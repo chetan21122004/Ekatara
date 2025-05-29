@@ -1,269 +1,541 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Globe, Users, Award, Target } from "lucide-react"
+import Image from "next/image"
+import { Globe, Users, Award, Target, CheckCircle, Star, TrendingUp, Heart, Lightbulb, Shield } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 export default function AboutPage() {
+  const teamMembers = [
+    {
+      name: "Dr. Sarah Chen",
+      role: "Chief Executive Officer",
+      image: "/placeholder.svg?height=300&width=300",
+      bio: "15+ years in global event management with expertise in scientific conferences and corporate events.",
+    },
+    {
+      name: "Rajesh Patel",
+      role: "Chief Technology Officer",
+      image: "/placeholder.svg?height=300&width=300",
+      bio: "Technology innovator specializing in event platforms and digital transformation solutions.",
+    },
+    {
+      name: "Maria Rodriguez",
+      role: "Head of European Operations",
+      image: "/placeholder.svg?height=300&width=300",
+      bio: "International business expert with deep knowledge of European markets and cultural nuances.",
+    },
+  ]
+
+  const milestones = [
+    { year: "2018", title: "Company Founded", description: "Established in Pune with a vision for global excellence" },
+    {
+      year: "2019",
+      title: "First International Event",
+      description: "Successfully managed our first cross-border conference",
+    },
+    {
+      year: "2020",
+      title: "Virtual Innovation",
+      description: "Pioneered hybrid event solutions during global challenges",
+    },
+    { year: "2021", title: "Dubai Expansion", description: "Opened Middle East operations to serve regional clients" },
+    { year: "2022", title: "European Presence", description: "Established Rotterdam office for European market" },
+    { year: "2023", title: "500+ Events Milestone", description: "Celebrated delivering over 500 successful events" },
+    { year: "2024", title: "AI Integration", description: "Launched AI-powered event management solutions" },
+  ]
+
   return (
-    <div className="min-h-screen bg-gray-900">
-      <div className="container mx-auto px-4 py-12">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <Badge className="mb-4 bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
-            About Ekatra Meetings
-          </Badge>
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">Connecting Global Scientific Communities</h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            With 8+ years of experience and a global presence, we are dedicated to excellence in scholarly research and
-            innovation.
-          </p>
+    <div className="min-h-screen pt-20">
+      {/* Hero Section */}
+      <section className="relative py-24 bg-gradient-to-br from-red-50 via-white to-gray-50 overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%23dc2626' fillOpacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            }}
+          ></div>
         </div>
 
-        {/* Hero Image */}
-        <div className="mb-16">
-          <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-            <div className="aspect-video bg-gradient-to-br from-indigo-900 to-cyan-900">
-              <img
-                src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
-                alt="Scientific Conference"
-                className="w-full h-full object-cover opacity-80"
+        {/* Floating Elements */}
+        <div className="absolute top-20 left-10 w-20 h-20 bg-red-100 rounded-full opacity-60 animate-pulse"></div>
+        <div className="absolute top-40 right-20 w-16 h-16 bg-red-200 rounded-full opacity-40 animate-bounce"></div>
+        <div className="absolute bottom-40 left-20 w-12 h-12 bg-red-300 rounded-full opacity-50 animate-pulse"></div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Left Content */}
+            <div>
+              <div className="mb-8">
+                <span className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-red-100 to-red-50 border border-red-200 text-red-700 text-sm font-semibold">
+                  <Heart className="w-4 h-4 mr-2" />
+                  Our Story
+                </span>
+              </div>
+
+              <h1 className="text-5xl md:text-6xl font-bold mb-8 leading-tight">
+                <span className="text-gray-900">About</span>
+                <br />
+                <span className="bg-gradient-to-r from-red-600 to-red-700 bg-clip-text text-transparent">
+                  Ekatra Meetings
+                </span>
+              </h1>
+
+              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                A global leader in professional event management with a passion for creating exceptional experiences
+                that bring people together and drive business success across three continents.
+              </p>
+
+              <div className="grid grid-cols-2 gap-6 mb-8">
+                <div className="text-center p-4 bg-white rounded-2xl shadow-lg border border-gray-100">
+                  <div className="text-3xl font-bold text-red-600 mb-1">500+</div>
+                  <div className="text-sm text-gray-600">Events Delivered</div>
+                </div>
+                <div className="text-center p-4 bg-white rounded-2xl shadow-lg border border-gray-100">
+                  <div className="text-3xl font-bold text-red-600 mb-1">50K+</div>
+                  <div className="text-sm text-gray-600">Happy Attendees</div>
+                </div>
+                <div className="text-center p-4 bg-white rounded-2xl shadow-lg border border-gray-100">
+                  <div className="text-3xl font-bold text-red-600 mb-1">3</div>
+                  <div className="text-sm text-gray-600">Global Offices</div>
+                </div>
+                <div className="text-center p-4 bg-white rounded-2xl shadow-lg border border-gray-100">
+                  <div className="text-3xl font-bold text-red-600 mb-1">98%</div>
+                  <div className="text-sm text-gray-600">Client Satisfaction</div>
+                </div>
+              </div>
+
+              <Button asChild className="bg-red-600 hover:bg-red-700 text-white rounded-full px-8 py-3">
+                <Link href="/contact">Get in Touch</Link>
+              </Button>
+            </div>
+
+            {/* Right Content - Image */}
+            <div className="relative">
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+                <Image
+                  src="/images/team-meeting.jpg"
+                  alt="Ekatra Meetings Team"
+                  width={600}
+                  height={500}
+                  className="object-cover w-full h-96"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-red-600/20 to-transparent"></div>
+              </div>
+
+              {/* Floating Achievement Card */}
+              <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-6 border border-gray-100">
+                <div className="flex items-center space-x-4">
+                  <div className="bg-yellow-100 p-3 rounded-xl">
+                    <Award className="text-yellow-600" size={24} />
+                  </div>
+                  <div>
+                    <div className="text-lg font-bold text-gray-900">ISO 9001</div>
+                    <div className="text-sm text-gray-600">Certified Excellence</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Background Decoration */}
+              <div className="absolute -z-10 top-10 right-10 w-72 h-72 bg-gradient-to-br from-red-200 to-red-300 rounded-full opacity-20 blur-3xl"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Company Story */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-red-100 text-red-600 text-sm font-medium mb-6">
+              <Lightbulb className="w-4 h-4 mr-2" />
+              Our Journey
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              The Story Behind <span className="text-red-600">Our Success</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Founded with a clear mission to revolutionize event management through innovation, expertise, and global
+              reach.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-8">
+              <div className="bg-gradient-to-br from-red-50 to-white p-8 rounded-3xl border border-red-100">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Mission</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  Ekatra Meetings was established with a clear mission: to deliver world-class event management services
+                  that exceed expectations and create lasting impact. Our name "Ekatra" means "together" in Sanskrit,
+                  reflecting our core belief in the power of bringing people together.
+                </p>
+              </div>
+
+              <div className="bg-gradient-to-br from-blue-50 to-white p-8 rounded-3xl border border-blue-100">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Global Expertise</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  With our global presence spanning three continents, we combine local expertise with international
+                  standards to deliver events that resonate with diverse audiences. Our team brings together decades of
+                  experience in scientific, academic, and corporate event management.
+                </p>
+              </div>
+
+              <div className="bg-gradient-to-br from-green-50 to-white p-8 rounded-3xl border border-green-100">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Proven Excellence</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  From intimate networking sessions to large-scale international conferences, we have successfully
+                  managed thousands of events, always with the same commitment to excellence and attention to detail
+                  that defines our brand.
+                </p>
+              </div>
+            </div>
+
+            <div className="relative">
+              <Image
+                src="/images/conference-room.jpg"
+                alt="Professional Conference"
+                width={600}
+                height={600}
+                className="rounded-3xl shadow-2xl object-cover w-full h-full"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-3xl"></div>
             </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent"></div>
           </div>
         </div>
+      </section>
 
-        {/* Mission & Vision */}
-        <div className="grid md:grid-cols-2 gap-8 mb-16">
-          <Card className="rounded-2xl shadow-lg border border-gray-700 bg-gradient-to-br from-gray-800 to-[#1E1E2E]">
-            <CardHeader>
-              <CardTitle className="flex items-center text-indigo-400">
-                <Target className="mr-2 h-6 w-6" />
-                Our Mission
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-gray-300">
-                To act as a forum where academics and researchers from all over the world can meet to exchange ideas on
-                their research and discuss the future developments in their disciplines. We promote, support, expand,
-                preserve, and disseminate scholarly research, knowledge, and creative endeavours in the medical sciences
-                and technology.
-              </p>
-            </CardContent>
-          </Card>
+      {/* Timeline */}
+      <section className="py-24 bg-gradient-to-br from-gray-50 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-red-100 text-red-600 text-sm font-medium mb-6">
+              <TrendingUp className="w-4 h-4 mr-2" />
+              Our Journey
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Milestones of <span className="text-red-600">Excellence</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Key moments that shaped our journey from a startup to a global event management leader.
+            </p>
+          </div>
 
-          <Card className="rounded-2xl shadow-lg border border-gray-700 bg-gradient-to-br from-gray-800 to-[#1E1E2E]">
-            <CardHeader>
-              <CardTitle className="flex items-center text-cyan-400">
-                <Award className="mr-2 h-6 w-6" />
-                Our Vision
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-gray-300">
-                To provide the perfect platform for all researchers and academicians to exchange ideas, share insights
-                and innovations, meet a diverse group of colleagues, participate in discussions, learn about the latest
-                research findings in their field and to earn credits for professional development.
-              </p>
-            </CardContent>
-          </Card>
+          <div className="relative">
+            {/* Timeline Line */}
+            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-red-200 transform md:-translate-x-1/2"></div>
+
+            {/* Timeline Items */}
+            <div className="space-y-12">
+              {milestones.map((milestone, index) => (
+                <div key={milestone.year} className="relative flex flex-col md:flex-row items-center">
+                  <div
+                    className={`flex-1 ${
+                      index % 2 === 0 ? "md:pr-8 md:text-right" : "md:pl-8 md:order-3"
+                    } order-2 mt-4 md:mt-0`}
+                  >
+                    <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                      <div className="text-red-600 font-bold text-lg mb-2">{milestone.year}</div>
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">{milestone.title}</h3>
+                      <p className="text-gray-600">{milestone.description}</p>
+                    </div>
+                  </div>
+
+                  <div className="absolute left-4 md:left-1/2 transform -translate-x-1/2 flex items-center justify-center w-8 h-8 rounded-full bg-red-600 text-white order-1 md:order-2">
+                    <span className="font-bold text-sm">{index + 1}</span>
+                  </div>
+
+                  {index % 2 !== 0 && (
+                    <div className="flex-1 md:pr-8 order-3 mt-4 md:mt-0">
+                      <div className="hidden md:block"></div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
+      </section>
 
-        {/* Company Overview */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold text-white mb-8 text-center">Company Overview</h2>
-          <div className="bg-gradient-to-br from-[#1E1E2E] to-gray-800 rounded-2xl p-8 border border-gray-700">
-            <div className="grid lg:grid-cols-2 gap-8 items-center">
-              <div>
-                <p className="text-lg text-gray-300 mb-6">
-                  Ekatra Meetings is the leading international scientific conference organizer with a vast and
-                  tremendous experience in organizing biggest international academic and business conferences across the
-                  globe. Our main strength is our highly qualified, experienced and dedicated team and also close
-                  contacts with almost all major societies and association throughout the world.
-                </p>
-                <p className="text-lg text-gray-300">
-                  We are specialized in organizing biggest academic & industry events, workshops and exhibitions mostly
-                  in the field of medical, nursing and healthcare. Our international company headquarters are based in
-                  Rotterdam, Dubai and Pune, and we already have 8 years of experience in the events industry.
-                </p>
-              </div>
-              <div className="relative">
-                <div className="aspect-square rounded-2xl overflow-hidden">
-                  <img
-                    src="https://images.unsplash.com/photo-1559223607-a43c990c692c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-                    alt="Team collaboration"
-                    className="w-full h-full object-cover"
-                  />
+      {/* Global Presence */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-red-100 text-red-600 text-sm font-medium mb-6">
+              <Globe className="w-4 h-4 mr-2" />
+              Global Reach
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Strategic Offices Across <span className="text-red-600">Three Continents</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Our global presence ensures local expertise with international standards, delivering exceptional events
+              wherever your audience is located.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Pune Office */}
+            <div className="group relative overflow-hidden rounded-3xl bg-white shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+              <div className="relative h-64">
+                <Image
+                  src="/images/office-pune.jpg"
+                  alt="Pune Office"
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                <div className="absolute top-6 left-6">
+                  <div className="bg-red-600 p-3 rounded-2xl">
+                    <Globe className="text-white" size={24} />
+                  </div>
                 </div>
+                <div className="absolute bottom-6 left-6">
+                  <h3 className="text-2xl font-bold text-white mb-1">Pune, India</h3>
+                  <p className="text-gray-300 text-sm">Headquarters & Operations</p>
+                </div>
+              </div>
+              <div className="p-8">
+                <ul className="space-y-3">
+                  <li className="flex items-center text-gray-600">
+                    <CheckCircle className="w-5 h-5 text-red-600 mr-3" />
+                    Main Operations Hub
+                  </li>
+                  <li className="flex items-center text-gray-600">
+                    <CheckCircle className="w-5 h-5 text-red-600 mr-3" />
+                    Technology Development Center
+                  </li>
+                  <li className="flex items-center text-gray-600">
+                    <CheckCircle className="w-5 h-5 text-red-600 mr-3" />
+                    24/7 Customer Support
+                  </li>
+                  <li className="flex items-center text-gray-600">
+                    <CheckCircle className="w-5 h-5 text-red-600 mr-3" />
+                    Regional Event Management
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Dubai Office */}
+            <div className="group relative overflow-hidden rounded-3xl bg-white shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+              <div className="relative h-64">
+                <Image
+                  src="/images/office-dubai.jpg"
+                  alt="Dubai Office"
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                <div className="absolute top-6 left-6">
+                  <div className="bg-red-600 p-3 rounded-2xl">
+                    <Globe className="text-white" size={24} />
+                  </div>
+                </div>
+                <div className="absolute bottom-6 left-6">
+                  <h3 className="text-2xl font-bold text-white mb-1">Dubai, UAE</h3>
+                  <p className="text-gray-300 text-sm">Middle East Operations</p>
+                </div>
+              </div>
+              <div className="p-8">
+                <ul className="space-y-3">
+                  <li className="flex items-center text-gray-600">
+                    <CheckCircle className="w-5 h-5 text-red-600 mr-3" />
+                    Regional Coordination
+                  </li>
+                  <li className="flex items-center text-gray-600">
+                    <CheckCircle className="w-5 h-5 text-red-600 mr-3" />
+                    Client Relations Management
+                  </li>
+                  <li className="flex items-center text-gray-600">
+                    <CheckCircle className="w-5 h-5 text-red-600 mr-3" />
+                    Local Partnerships
+                  </li>
+                  <li className="flex items-center text-gray-600">
+                    <CheckCircle className="w-5 h-5 text-red-600 mr-3" />
+                    Cultural Adaptation Services
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Rotterdam Office */}
+            <div className="group relative overflow-hidden rounded-3xl bg-white shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+              <div className="relative h-64">
+                <Image
+                  src="/images/office-rotterdam.jpg"
+                  alt="Rotterdam Office"
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                <div className="absolute top-6 left-6">
+                  <div className="bg-red-600 p-3 rounded-2xl">
+                    <Globe className="text-white" size={24} />
+                  </div>
+                </div>
+                <div className="absolute bottom-6 left-6">
+                  <h3 className="text-2xl font-bold text-white mb-1">Rotterdam, Netherlands</h3>
+                  <p className="text-gray-300 text-sm">European Operations</p>
+                </div>
+              </div>
+              <div className="p-8">
+                <ul className="space-y-3">
+                  <li className="flex items-center text-gray-600">
+                    <CheckCircle className="w-5 h-5 text-red-600 mr-3" />
+                    European Market Access
+                  </li>
+                  <li className="flex items-center text-gray-600">
+                    <CheckCircle className="w-5 h-5 text-red-600 mr-3" />
+                    Strategic Partnerships
+                  </li>
+                  <li className="flex items-center text-gray-600">
+                    <CheckCircle className="w-5 h-5 text-red-600 mr-3" />
+                    Compliance Management
+                  </li>
+                  <li className="flex items-center text-gray-600">
+                    <CheckCircle className="w-5 h-5 text-red-600 mr-3" />
+                    Innovation Hub
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Global Presence */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold text-white mb-8 text-center">Global Presence</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="rounded-2xl shadow-lg text-center border border-gray-700 bg-gradient-to-br from-gray-800 to-[#1E1E2E]">
-              <CardHeader>
-                <div className="w-16 h-16 bg-indigo-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Globe className="h-8 w-8 text-indigo-400" />
-                </div>
-                <CardTitle className="text-indigo-400">Rotterdam</CardTitle>
-                <CardDescription className="text-gray-400">European Headquarters</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="aspect-video rounded-lg overflow-hidden mb-4">
-                  <img
-                    src="https://images.unsplash.com/photo-1583422409516-2895a77efded?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-                    alt="Rotterdam skyline"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <p className="text-gray-300">
-                  Our European operations center, serving the European scientific community with comprehensive event
-                  management services.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="rounded-2xl shadow-lg text-center border border-gray-700 bg-gradient-to-br from-gray-800 to-[#1E1E2E]">
-              <CardHeader>
-                <div className="w-16 h-16 bg-cyan-400/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Globe className="h-8 w-8 text-cyan-400" />
-                </div>
-                <CardTitle className="text-cyan-400">Dubai</CardTitle>
-                <CardDescription className="text-gray-400">Middle East Hub</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="aspect-video rounded-lg overflow-hidden mb-4">
-                  <img
-                    src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-                    alt="Dubai skyline"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <p className="text-gray-300">
-                  Strategic location connecting East and West, facilitating international collaborations and
-                  cross-cultural exchanges.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="rounded-2xl shadow-lg text-center border border-gray-700 bg-gradient-to-br from-gray-800 to-[#1E1E2E]">
-              <CardHeader>
-                <div className="w-16 h-16 bg-indigo-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Globe className="h-8 w-8 text-indigo-400" />
-                </div>
-                <CardTitle className="text-indigo-400">Pune</CardTitle>
-                <CardDescription className="text-gray-400">Asian Operations</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="aspect-video rounded-lg overflow-hidden mb-4">
-                  <img
-                    src="https://images.unsplash.com/photo-1570168007204-dfb528c6958f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-                    alt="Pune cityscape"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <p className="text-gray-300">
-                  Our Asian headquarters, supporting the growing scientific community across the Asia-Pacific region.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-
-        {/* Our Team */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold text-white mb-8 text-center">Our Expert Team</h2>
-          <Card className="rounded-2xl shadow-lg border border-gray-700 bg-gradient-to-br from-gray-800 to-[#1E1E2E]">
-            <CardHeader>
-              <CardTitle className="flex items-center text-indigo-400">
-                <Users className="mr-2 h-6 w-6" />
-                Scientific Background & Experience
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="grid lg:grid-cols-2 gap-8 items-center">
-                <div>
-                  <p className="text-gray-300 mb-4">
-                    The team comprises of professionals from Science background which helps them to understand the
-                    requirements of the clients when it comes to the scientific events. With exposure of more than 2
-                    decades in event organizing and execution, it's the perfect blend of knowledge and experience.
-                  </p>
-                  <div className="grid md:grid-cols-2 gap-6 mt-6">
-                    <div>
-                      <h4 className="font-semibold text-white mb-2">Scientific Expertise</h4>
-                      <p className="text-gray-300">
-                        Our team members have scientific backgrounds, ensuring deep understanding of academic
-                        requirements and research methodologies.
-                      </p>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-white mb-2">Event Management Excellence</h4>
-                      <p className="text-gray-300">
-                        Over 20 years of combined experience in organizing and executing large-scale international
-                        scientific conferences.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="relative">
-                  <div className="aspect-square rounded-2xl overflow-hidden">
-                    <img
-                      src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-                      alt="Professional team meeting"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </section>
-
-        {/* Why Choose Us */}
-        <section>
-          <h2 className="text-3xl font-bold text-white mb-8 text-center">Why Choose Ekatra Meetings</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-gray-800 to-[#1E1E2E] border border-gray-700">
-              <div className="w-16 h-16 bg-indigo-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Award className="h-8 w-8 text-indigo-400" />
-              </div>
-              <h3 className="font-semibold text-white mb-2">Professional Academic Event Organizer</h3>
-              <p className="text-gray-300 text-sm">Specialized expertise in academic and scientific event management</p>
+      {/* Values Section */}
+      <section className="py-24 bg-gradient-to-br from-gray-50 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-red-100 text-red-600 text-sm font-medium mb-6">
+              <Shield className="w-4 h-4 mr-2" />
+              Our Values
             </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              The Principles That <span className="text-red-600">Guide Us</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Our core values shape everything we do and every event we create, ensuring consistent excellence across
+              all our services.
+            </p>
+          </div>
 
-            <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-gray-800 to-[#1E1E2E] border border-gray-700">
-              <div className="w-16 h-16 bg-cyan-400/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Users className="h-8 w-8 text-cyan-400" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="text-center group">
+              <div className="bg-gradient-to-br from-red-100 to-red-50 p-6 rounded-3xl mb-6 group-hover:from-red-200 group-hover:to-red-100 transition-all duration-300">
+                <Target className="text-red-600 mx-auto" size={48} />
               </div>
-              <h3 className="font-semibold text-white mb-2">Valuable Forum</h3>
-              <p className="text-gray-300 text-sm">
-                Platform for sharing best practices and exchanging innovative ideas
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Excellence</h3>
+              <p className="text-gray-600">
+                Delivering exceptional quality in every aspect of event management, from planning to execution.
               </p>
             </div>
 
-            <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-gray-800 to-[#1E1E2E] border border-gray-700">
-              <div className="w-16 h-16 bg-indigo-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Globe className="h-8 w-8 text-indigo-400" />
+            <div className="text-center group">
+              <div className="bg-gradient-to-br from-blue-100 to-blue-50 p-6 rounded-3xl mb-6 group-hover:from-blue-200 group-hover:to-blue-100 transition-all duration-300">
+                <Users className="text-blue-600 mx-auto" size={48} />
               </div>
-              <h3 className="font-semibold text-white mb-2">Collaboration Opportunities</h3>
-              <p className="text-gray-300 text-sm">
-                Initiating meaningful collaborations between researchers worldwide
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Collaboration</h3>
+              <p className="text-gray-600">
+                Working together with clients as partners to achieve shared success and meaningful outcomes.
               </p>
             </div>
 
-            <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-gray-800 to-[#1E1E2E] border border-gray-700">
-              <div className="w-16 h-16 bg-cyan-400/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Target className="h-8 w-8 text-cyan-400" />
+            <div className="text-center group">
+              <div className="bg-gradient-to-br from-green-100 to-green-50 p-6 rounded-3xl mb-6 group-hover:from-green-200 group-hover:to-green-100 transition-all duration-300">
+                <Lightbulb className="text-green-600 mx-auto" size={48} />
               </div>
-              <h3 className="font-semibold text-white mb-2">Trusted by Researchers</h3>
-              <p className="text-gray-300 text-sm">Recognized and trusted amongst the global research community</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Innovation</h3>
+              <p className="text-gray-600">
+                Embracing new technologies and creative solutions to enhance event experiences.
+              </p>
+            </div>
+
+            <div className="text-center group">
+              <div className="bg-gradient-to-br from-purple-100 to-purple-50 p-6 rounded-3xl mb-6 group-hover:from-purple-200 group-hover:to-purple-100 transition-all duration-300">
+                <Globe className="text-purple-600 mx-auto" size={48} />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">Global Reach</h3>
+              <p className="text-gray-600">
+                Connecting people and ideas across continents with local expertise and global standards.
+              </p>
             </div>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
+
+      {/* Leadership Team */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-red-100 text-red-600 text-sm font-medium mb-6">
+              <Star className="w-4 h-4 mr-2" />
+              Leadership Team
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Meet Our <span className="text-red-600">Expert Leaders</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Experienced professionals with deep expertise in scientific, academic, and corporate event management.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {teamMembers.map((member, index) => (
+              <div
+                key={member.name}
+                className="group bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden"
+              >
+                <div className="relative h-64">
+                  <Image
+                    src={member.image || "/placeholder.svg"}
+                    alt={member.name}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                </div>
+                <div className="p-8">
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">{member.name}</h3>
+                  <p className="text-red-600 font-medium mb-4">{member.role}</p>
+                  <p className="text-gray-600 text-sm leading-relaxed">{member.bio}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-24 bg-gradient-to-r from-red-600 to-red-700">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Ready to Work Together?</h2>
+            <p className="text-xl text-red-100 mb-12">
+              Let's create something extraordinary together. Our team is ready to bring your vision to life with our
+              global expertise and local knowledge.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <Button
+                asChild
+                size="lg"
+                className="bg-white text-red-600 hover:bg-gray-100 rounded-full px-8 py-6 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+              >
+                <Link href="/contact">Start Your Project</Link>
+              </Button>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="border-2 border-white text-white hover:bg-white hover:text-red-600 rounded-full px-8 py-6 text-lg font-semibold transition-all duration-300"
+              >
+                <Link href="/services">Explore Our Services</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }

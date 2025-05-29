@@ -1,16 +1,17 @@
+
 import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
+import Header from "@/components/header"
+import Footer from "@/components/footer"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Ekatra Meetings - Leading International Scientific Conference Organizer",
+  title: "Ekatra Meetings - Professional Event Management",
   description:
-    "Professional scientific conference organization services for medical, nursing, and healthcare events worldwide. 8+ years of experience with global presence.",
+    "Leading event management company specializing in conferences, trade shows, and corporate events. Offices in Pune, Dubai, and Rotterdam.",
     generator: 'v0.dev'
 }
 
@@ -22,8 +23,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navigation />
-        <main>{children}</main>
+        <Header />
+        <main className="min-h-screen">{children}</main>
         <Footer />
       </body>
     </html>
