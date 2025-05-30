@@ -98,7 +98,7 @@ export default function PaymentPage() {
           ))}
         </div>
 
-        {/* Payment Periods - Timeline Design */}
+        {/* Payment Periods - Modern Timeline Design */}
         <section className="mb-24">
           <SectionHeading
             title="Payment Timeline"
@@ -106,56 +106,87 @@ export default function PaymentPage() {
             centered
           />
 
-          <div className="relative">
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-px bg-gray-200" />
-            <div className="space-y-16">
-              {[
-                {
-                  phase: "Early Bird Rate",
-                  date: "Till July 15",
-                  price: "₹1,500",
-                  tag: "BEST VALUE",
-                  description: "Lock in the lowest rates by registering early",
-                  color: "green",
-                  icon: Calendar,
-                },
-                {
-                  phase: "Standard Rate",
-                  date: "July 16 - August 30",
-                  price: "₹2,000",
-                  tag: "CURRENT",
-                  description: "Regular registration period with standard pricing",
-                  color: "blue",
-                  icon: Clock,
-                },
-                {
-                  phase: "Late Registration",
-                  date: "After August 30",
-                  price: "₹2,500",
-                  tag: "LATE FEE",
-                  description: "Last-minute registration with premium rates",
-                  color: "red",
-                  icon: AlertTriangle,
-                },
-              ].map((period, index) => (
-                <div key={period.phase} className={`relative flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'}`}>
-                  <div className="w-1/2 pr-8 text-right">
-                    <div className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium mb-2 bg-${period.color}-100 text-${period.color}-700`}>
-                      {period.tag}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                phase: "Early Bird Rate",
+                date: "Until 45 days before event",
+                price: "₹1,500",
+                tag: "BEST VALUE",
+                description: "Lock in the lowest rates by registering early",
+                color: "green",
+                icon: Calendar,
+                gradient: "from-green-500 to-emerald-600",
+                savings: "Save ₹1,000",
+              },
+              {
+                phase: "Standard Rate",
+                date: "45 to 15 days before event",
+                price: "₹2,000",
+                tag: "CURRENT",
+                description: "Regular registration period with standard pricing",
+                color: "blue",
+                icon: Clock,
+                gradient: "from-blue-500 to-indigo-600",
+                savings: "Save ₹500",
+              },
+              {
+                phase: "Late Registration",
+                date: "Less than 15 days before event",
+                price: "₹2,500",
+                tag: "LATE FEE",
+                description: "Last-minute registration with premium rates",
+                color: "red",
+                icon: AlertTriangle,
+                gradient: "from-red-500 to-rose-600",
+                savings: "Full Price",
+              },
+            ].map((period, index) => (
+              <div 
+                key={period.phase}
+                className="relative group"
+              >
+                <div className={`absolute inset-0 bg-gradient-to-br ${period.gradient} opacity-50 blur-lg group-hover:opacity-75 transition-opacity duration-300 rounded-2xl`} />
+                <Card className="relative h-full bg-white/90 backdrop-blur-sm border-0 overflow-hidden">
+                  <div className={`absolute top-0 left-0 right-0 h-2 bg-gradient-to-r ${period.gradient}`} />
+                  <CardHeader>
+                    <div className="flex items-start justify-between mb-4">
+                      <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${period.gradient} flex items-center justify-center`}>
+                        <period.icon className="h-6 w-6 text-white" />
+                      </div>
+                      <Badge 
+                        variant="secondary" 
+                        className={`bg-${period.color}-100 text-${period.color}-700 hover:bg-${period.color}-200`}
+                      >
+                        {period.tag}
+                      </Badge>
                     </div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">{period.phase}</h3>
-                    <p className="text-gray-600 mb-2">{period.date}</p>
-                    <div className="text-3xl font-bold text-red-600">{period.price}</div>
-                  </div>
-                  <div className="absolute left-1/2 transform -translate-x-1/2 w-12 h-12 rounded-full border-4 border-white bg-white shadow-lg flex items-center justify-center">
-                    <period.icon className={`h-5 w-5 text-${period.color}-600`} />
-                  </div>
-                  <div className="w-1/2 pl-8">
-                    <p className="text-gray-600">{period.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+                    <h3 className="text-2xl font-bold text-gray-900">{period.phase}</h3>
+                    <p className="text-gray-500 font-medium">{period.date}</p>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-4">
+                      <div className="text-center py-4">
+                        <div className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-br ${period.gradient}">
+                          {period.price}
+                        </div>
+                        <div className="text-sm font-medium text-gray-500 mt-1">
+                          {period.savings}
+                        </div>
+                      </div>
+                      <p className="text-gray-600 text-center">
+                        {period.description}
+                      </p>
+                      <Button 
+                        className={`w-full bg-gradient-to-r ${period.gradient} text-white hover:opacity-90 transition-opacity duration-200`}
+                      >
+                        Select Plan
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            ))}
           </div>
         </section>
 

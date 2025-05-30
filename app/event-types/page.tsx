@@ -575,78 +575,116 @@ export default function EventTypesPage() {
       </section>
 
       {/* Event Planning Process */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-gradient-to-br from-gray-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-red-100 text-red-600 text-sm font-medium mb-6">
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-red-100 text-red-600 text-sm font-medium mb-6 animate-pulse">
               <Calendar className="w-4 h-4 mr-2" />
-              Our Approach
+              Our Process
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Event Planning <span className="text-red-600">Process</span>
+              Your Journey to an <span className="text-red-600">Exceptional Event</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Our structured approach ensures every event, regardless of type, is planned and executed with precision.
+              We've refined our process to ensure every event is meticulously planned and flawlessly executed.
             </p>
           </div>
 
-          <div className="relative">
-            {/* Timeline Line */}
-            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-red-200 transform md:-translate-x-1/2"></div>
-
-            {/* Timeline Steps */}
-            <div className="space-y-12">
-              {[
-                {
-                  step: "01",
-                  title: "Discovery & Objectives",
-                  description: "Understanding your goals, audience, and vision",
-                  icon: Target,
-                },
-                {
-                  step: "02",
-                  title: "Strategic Planning",
-                  description: "Creating a comprehensive event strategy and timeline",
-                  icon: Lightbulb,
-                },
-                {
-                  step: "03",
-                  title: "Execution & Management",
-                  description: "Delivering a flawless event experience",
-                  icon: Calendar,
-                },
-                {
-                  step: "04",
-                  title: "Analysis & Follow-up",
-                  description: "Measuring success and planning future improvements",
-                  icon: BarChart3,
-                },
-              ].map((item, index) => (
-                <div key={item.step} className="relative flex flex-col md:flex-row items-center">
-                  <div
-                    className={`flex-1 ${
-                      index % 2 === 0 ? "md:pr-8 md:text-right" : "md:pl-8 md:order-3"
-                    } order-2 mt-4 md:mt-0`}
-                  >
-                    <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
-                      <div className="text-red-600 font-bold text-sm mb-2">STEP {item.step}</div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h3>
-                      <p className="text-gray-600">{item.description}</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                step: "01",
+                title: "Discovery & Objectives",
+                description: "Understanding your goals, audience, and vision",
+                icon: Target,
+                gradient: "from-blue-500 to-blue-600",
+                bgGradient: "from-blue-50 to-blue-100",
+              },
+              {
+                step: "02",
+                title: "Strategic Planning",
+                description: "Creating a comprehensive event strategy and timeline",
+                icon: Lightbulb,
+                gradient: "from-purple-500 to-purple-600",
+                bgGradient: "from-purple-50 to-purple-100",
+              },
+              {
+                step: "03",
+                title: "Execution & Management",
+                description: "Delivering a flawless event experience",
+                icon: Calendar,
+                gradient: "from-red-500 to-red-600",
+                bgGradient: "from-red-50 to-red-100",
+              },
+              {
+                step: "04",
+                title: "Analysis & Follow-up",
+                description: "Measuring success and planning future improvements",
+                icon: BarChart3,
+                gradient: "from-green-500 to-green-600",
+                bgGradient: "from-green-50 to-green-100",
+              },
+            ].map((item) => (
+              <div
+                key={item.step}
+                className="group relative bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden"
+              >
+                {/* Top Gradient Bar */}
+                <div className={`h-2 bg-gradient-to-r ${item.gradient}`}></div>
+                
+                <div className="p-8">
+                  {/* Icon and Step Number */}
+                  <div className="flex items-center justify-between mb-6">
+                    <div className={`bg-gradient-to-r ${item.bgGradient} p-4 rounded-2xl group-hover:scale-110 transition-transform duration-300`}>
+                      <item.icon className={`text-${item.gradient.split("-")[1].split(" ")[0]}-600`} size={24} />
                     </div>
+                    <span className={`text-3xl font-bold bg-gradient-to-r ${item.gradient} bg-clip-text text-transparent`}>
+                      {item.step}
+                    </span>
                   </div>
 
-                  <div className="absolute left-4 md:left-1/2 transform -translate-x-1/2 flex items-center justify-center w-8 h-8 rounded-full bg-red-600 text-white order-1 md:order-2">
-                    <item.icon size={16} />
+                  {/* Content */}
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
+                    <p className="text-gray-600">{item.description}</p>
                   </div>
 
-                  {index % 2 !== 0 && (
-                    <div className="flex-1 md:pr-8 order-3 mt-4 md:mt-0">
-                      <div className="hidden md:block"></div>
-                    </div>
-                  )}
+                  {/* Hover Indicator */}
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-transparent to-transparent group-hover:bg-gradient-to-r group-hover:from-transparent group-hover:via-red-500 group-hover:to-transparent transition-all duration-300"></div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Additional Features */}
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Real-time Updates",
+                description: "Stay informed with live progress tracking",
+                icon: Zap,
+              },
+              {
+                title: "Dedicated Support",
+                description: "Expert assistance throughout the process",
+                icon: MessageSquare,
+              },
+              {
+                title: "Flexible Adaptation",
+                description: "Quick adjustments to changing requirements",
+                icon: Target,
+              },
+            ].map((feature) => (
+              <div key={feature.title} className="flex items-start space-x-4">
+                <div className="bg-red-100 p-3 rounded-xl">
+                  <feature.icon className="text-red-600" size={20} />
+                </div>
+                <div>
+                  <h4 className="text-lg font-semibold text-gray-900">{feature.title}</h4>
+                  <p className="text-gray-600">{feature.description}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

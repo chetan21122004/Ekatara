@@ -254,7 +254,7 @@ export default function FAQPage() {
 
   return (
     <div className="min-h-screen py-20 bg-gradient-to-b from-white to-gray-50">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-5xl mx-auto px-4 mt-3 sm:px-6 lg:px-8">
         {/* Hero Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -404,11 +404,9 @@ export default function FAQPage() {
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.3, delay: faqIndex * 0.05 }}
-                            className={`bg-white rounded-xl shadow-sm border ${
-                              isOpen ? "border-red-200" : "border-gray-100"
-                            } hover:border-red-200 transition-all duration-300 ${
-                              isPopular ? "ring-2 ring-red-100" : ""
-                            }`}
+                            className={`bg-white rounded-xl shadow-sm border ${isOpen ? "border-red-200" : "border-gray-100"
+                              } hover:border-red-200 transition-all duration-300 ${isPopular ? "ring-2 ring-red-100" : ""
+                              }`}
                           >
                             <button
                               onClick={() => toggleItem(globalIndex)}
@@ -423,9 +421,8 @@ export default function FAQPage() {
                                 <h3 className="text-lg font-semibold text-gray-800">{faq.question}</h3>
                               </div>
                               <ChevronDown
-                                className={`text-red-600 flex-shrink-0 transition-transform duration-200 ${
-                                  isOpen ? "transform rotate-180" : ""
-                                }`}
+                                className={`text-red-600 flex-shrink-0 transition-transform duration-200 ${isOpen ? "transform rotate-180" : ""
+                                  }`}
                                 size={20}
                               />
                             </button>
@@ -502,11 +499,9 @@ export default function FAQPage() {
                               initial={{ opacity: 0, y: 10 }}
                               animate={{ opacity: 1, y: 0 }}
                               transition={{ duration: 0.3, delay: faqIndex * 0.05 }}
-                              className={`bg-white rounded-xl shadow-sm border ${
-                                isOpen ? "border-red-200" : "border-gray-100"
-                              } hover:border-red-200 transition-all duration-300 ${
-                                isPopular ? "ring-2 ring-red-100" : ""
-                              }`}
+                              className={`bg-white rounded-xl shadow-sm border ${isOpen ? "border-red-200" : "border-gray-100"
+                                } hover:border-red-200 transition-all duration-300 ${isPopular ? "ring-2 ring-red-100" : ""
+                                }`}
                             >
                               <button
                                 onClick={() => toggleItem(globalIndex)}
@@ -521,9 +516,8 @@ export default function FAQPage() {
                                   <h3 className="text-lg font-semibold text-gray-800">{faq.question}</h3>
                                 </div>
                                 <ChevronDown
-                                  className={`text-red-600 flex-shrink-0 transition-transform duration-200 ${
-                                    isOpen ? "transform rotate-180" : ""
-                                  }`}
+                                  className={`text-red-600 flex-shrink-0 transition-transform duration-200 ${isOpen ? "transform rotate-180" : ""
+                                    }`}
                                   size={20}
                                 />
                               </button>
@@ -618,9 +612,7 @@ export default function FAQPage() {
                   Contact Support Team
                 </Button>
                 <Button
-                  variant="outline"
-                  className="border-2 border-white text-white hover:bg-white hover:text-red-600 px-8 py-6 rounded-xl font-semibold text-lg transition-colors h-auto"
-                >
+                  className="bg-white text-red-600 hover:bg-gray-100 px-8 py-6 rounded-xl font-semibold text-lg transition-colors h-auto">
                   Schedule a Call
                 </Button>
               </div>

@@ -289,7 +289,7 @@ export default function CapabilitiesPage() {
                     <ArrowRight className="ml-2" size={16} />
                   </Link>
                 </Button>
-                <Button
+                <Button  
                   asChild
                   variant="outline"
                   className="border-red-200 text-red-600 hover:bg-red-50 rounded-full px-8 py-3"
@@ -677,8 +677,7 @@ export default function CapabilitiesPage() {
               <Button
                 asChild
                 size="lg"
-                variant="outline"
-                className="border-2 border-white text-white hover:bg-white hover:text-red-600 rounded-full px-8 py-6 text-lg font-semibold transition-all duration-300"
+                className="bg-white text-red-600 hover:bg-gray-100 rounded-full px-8 py-6 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
               >
                 <Link href="/services">View Our Services</Link>
               </Button>

@@ -718,8 +718,7 @@ export default function RegistrationPage() {
               <Button
                 asChild
                 size="lg"
-                variant="outline"
-                className="border-2 border-white text-white hover:bg-white hover:text-purple-600 rounded-full px-12 py-6 text-xl font-semibold transition-all duration-300"
+                className="bg-white text-purple-600 hover:bg-gray-100 rounded-full px-12 py-6 text-xl font-semibold shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105"
               >
                 <Link href="/contact">
                   <MessageSquare className="mr-3" size={24} />

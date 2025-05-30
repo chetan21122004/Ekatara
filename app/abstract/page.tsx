@@ -100,50 +100,69 @@ export default function AbstractGuidelinesPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+    <div className="min-h-screen bg-gradient-to-br pt-6  from-gray-50 to-white">
       {/* Modern Hero Section with Glassmorphism */}
-      <section className="relative py-24 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-black to-gray-900">
-          <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
-        </div>
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-black">
+        {/* Animated background gradients */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(200,0,0,0.1),rgba(0,0,0,0))] animate-pulse"></div>
         <div className="absolute inset-0">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-red-500/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 right-10 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-5"></div>
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-red-900/30 via-transparent to-purple-900/30"></div>
+          {/* Animated orbs */}
+          <div className="absolute top-20 left-[10%] w-96 h-96 bg-red-500/10 rounded-full blur-3xl animate-float"></div>
+          <div className="absolute bottom-20 right-[10%] w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-float-delayed"></div>
         </div>
+
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl">
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-red-500/10 backdrop-blur-sm border border-red-500/20 text-red-600 text-sm font-medium mb-8">
-              <Clock className="w-4 h-4 mr-2" />
-              Submission Deadline: June 30, 2025
+          <div className="max-w-4xl mx-auto text-center">
+            {/* Deadline badge */}
+            <div className="inline-flex items-center mt-3 px-6 py-3 rounded-2xl bg-gradient-to-r from-red-500/10 to-purple-500/10 backdrop-blur-sm border border-white/10 text-white text-sm font-medium mb-12 animate-fade-in-up">
+              <Clock className="w-5 h-5 mr-3 text-red-400" />
+              <span className="bg-gradient-to-r from-red-400 to-purple-400 bg-clip-text text-transparent">
+                Abstract Submission 
+              </span>
             </div>
-            <h1 className="text-6xl font-bold text-white mb-8 leading-tight">
-              Abstract Submission
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-purple-600">
-                Guidelines
+
+            {/* Main heading with animated gradient */}
+            <h1 className="text-7xl font-bold mb-8 leading-tight animate-fade-in-up animation-delay-150">
+              <span className="text-white">Abstract</span>
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-red-500 to-purple-600 animate-gradient-x">
+                Submission Guidelines
               </span>
             </h1>
-            <p className="text-xl text-gray-300 mb-12 leading-relaxed max-w-2xl">
+
+            {/* Description with improved typography */}
+            <p className="text-xl text-gray-300/90 mb-12 leading-relaxed max-w-2xl mx-auto animate-fade-in-up animation-delay-300">
               Follow our comprehensive guidelines to ensure your research abstract meets all requirements and stands the best chance of acceptance.
             </p>
-            <div className="flex flex-wrap gap-4">
+
+            {/* Enhanced buttons with animations */}
+            <div className="flex flex-wrap justify-center gap-6 animate-fade-in-up animation-delay-450">
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white rounded-lg px-8 py-6 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
+                className="group relative bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white rounded-xl px-10 py-7 text-lg font-semibold shadow-[0_0_30px_rgba(220,38,38,0.2)] hover:shadow-[0_0_50px_rgba(220,38,38,0.4)] transition-all duration-300 transform hover:-translate-y-1"
               >
-                Submit Abstract
-                <ExternalLink className="ml-2" size={20} />
+                <span className="relative z-10 flex items-center">
+                  Submit Abstract
+                  <ExternalLink className="ml-2 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+                </span>
               </Button>
               <Button
                 size="lg"
                 variant="outline"
-                className="bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20 rounded-lg px-8 py-6 text-lg font-semibold transition-all duration-300"
+                className="group relative bg-white/5 backdrop-blur-sm border-white/10 text-white hover:bg-white/10 rounded-xl px-10 py-7 text-lg font-semibold transition-all duration-300"
               >
-                Download Template
-                <Download className="ml-2" size={20} />
+                <span className="relative z-10 flex items-center">
+                  Download Template
+                  <Download className="ml-2 w-5 h-5 transition-transform duration-300 group-hover:translate-y-1" />
+                </span>
               </Button>
             </div>
           </div>
         </div>
+
+        {/* Bottom decorative line */}
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-red-500/50 to-transparent"></div>
       </section>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">

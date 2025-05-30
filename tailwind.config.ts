@@ -83,12 +83,51 @@ const config: Config = {
   				to: {
   					height: '0'
   				}
-  			}
+  			},
+        'gradient-x': {
+          '0%, 100%': {
+            'background-size': '200% 200%',
+            'background-position': 'left center'
+          },
+          '50%': {
+            'background-size': '200% 200%',
+            'background-position': 'right center'
+          }
+        },
+        'float': {
+          '0%, 100%': {
+            transform: 'translateY(0px) scale(1)',
+            opacity: '0.1'
+          },
+          '50%': {
+            transform: 'translateY(-20px) scale(1.05)',
+            opacity: '0.2'
+          }
+        },
+        'fade-in-up': {
+          '0%': {
+            opacity: '0',
+            transform: 'translateY(20px)'
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateY(0)'
+          }
+        }
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
-  			'accordion-up': 'accordion-up 0.2s ease-out'
-  		}
+  			'accordion-up': 'accordion-up 0.2s ease-out',
+        'gradient-x': 'gradient-x 15s ease infinite',
+        'float': 'float 6s ease-in-out infinite',
+        'float-delayed': 'float 6s ease-in-out infinite 3s',
+        'fade-in-up': 'fade-in-up 0.5s ease-out forwards'
+  		},
+      transitionDelay: {
+        '150': '150ms',
+        '300': '300ms',
+        '450': '450ms',
+      }
   	}
   },
   plugins: [require("tailwindcss-animate")],
