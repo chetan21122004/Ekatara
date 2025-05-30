@@ -24,11 +24,26 @@ import {
   ChevronRight,
   Play,
   MessageSquare,
+  FileText,
+  Calendar,
+  CreditCard,
+  AlertCircle,
+  ExternalLink,
+  Mail,
+  GraduationCap,
+  Clock,
+  FileCheck,
+  Building,
+  Microscope,
+  Pill,
+  Apple,
+  Beaker,
 } from "lucide-react"
 
 export default function RegistrationPage() {
   const [selectedPlan, setSelectedPlan] = useState("Professional")
   const [activeTab, setActiveTab] = useState("early-bird")
+  const [activeSection, setActiveSection] = useState("overview")
 
   const registrationSteps = [
     {
@@ -203,6 +218,97 @@ export default function RegistrationPage() {
       features: ["AI-powered introductions", "Private meetup spaces", "Follow-up automation", "Contact management"],
       price: "From $149",
       color: "from-purple-500 to-purple-600",
+    },
+  ]
+
+  const eligibleParticipants = [
+    {
+      title: "Researchers",
+      icon: Microscope,
+      description: "Academic and industry researchers in life sciences",
+    },
+    {
+      title: "Students",
+      icon: GraduationCap,
+      description: "Graduate and post-graduate students",
+    },
+    {
+      title: "Professionals",
+      icon: Building,
+      description: "Industry professionals and practitioners",
+    },
+    {
+      title: "Faculty",
+      icon: Users,
+      description: "Academic faculty members and educators",
+    },
+  ]
+
+  const fields = [
+    {
+      name: "Medical Research",
+      icon: FileCheck,
+      color: "from-blue-500 to-blue-600",
+    },
+    {
+      name: "Biotechnology",
+      icon: Beaker,
+      color: "from-green-500 to-green-600",
+    },
+    {
+      name: "Pharmaceutical",
+      icon: Pill,
+      color: "from-purple-500 to-purple-600",
+    },
+    {
+      name: "Food Science",
+      icon: Apple,
+      color: "from-red-500 to-red-600",
+    },
+  ]
+
+  const requiredDocs = [
+    {
+      title: "Valid ID",
+      description: "Government-issued photo identification",
+      icon: BadgeCheck,
+      note: "For students: Include valid student ID",
+    },
+    {
+      title: "Abstract",
+      description: "Required for presenters only",
+      icon: FileText,
+      note: "Must follow provided template",
+    },
+    {
+      title: "Payment Confirmation",
+      description: "If applicable for your registration type",
+      icon: CreditCard,
+      note: "Various payment methods accepted",
+    },
+  ]
+
+  const timeline = [
+    {
+      phase: "Early Bird",
+      deadline: "March 15, 2024",
+      discount: "25% off",
+      icon: Clock,
+      status: "active",
+    },
+    {
+      phase: "Standard",
+      deadline: "April 30, 2024",
+      discount: "Regular price",
+      icon: Calendar,
+      status: "upcoming",
+    },
+    {
+      phase: "Late",
+      deadline: "May 15, 2024",
+      discount: "10% premium",
+      icon: AlertCircle,
+      status: "upcoming",
     },
   ]
 
@@ -658,6 +764,216 @@ export default function RegistrationPage() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Who Can Register Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Who Can Register</h2>
+            <p className="text-xl text-gray-600">
+              Our events are open to professionals from various backgrounds in life sciences
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {eligibleParticipants.map((participant) => (
+              <div
+                key={participant.title}
+                className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100"
+              >
+                <div className="bg-red-50 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                  <participant.icon className="w-6 h-6 text-red-600" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">{participant.title}</h3>
+                <p className="text-gray-600">{participant.description}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
+            {fields.map((field) => (
+              <div
+                key={field.name}
+                className="bg-gradient-to-r bg-opacity-10 rounded-lg p-4 flex items-center space-x-3"
+              >
+                <div className={`bg-gradient-to-r ${field.color} p-2 rounded-lg`}>
+                  <field.icon className="w-5 h-5 text-white" />
+                </div>
+                <span className="text-sm font-medium">{field.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Documents Required Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Documents Required</h2>
+            <p className="text-xl text-gray-600">
+              Please prepare the following documents before starting your registration
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {requiredDocs.map((doc) => (
+              <div
+                key={doc.title}
+                className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300"
+              >
+                <div className="flex items-center space-x-4 mb-6">
+                  <div className="bg-red-50 p-3 rounded-lg">
+                    <doc.icon className="w-6 h-6 text-red-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold">{doc.title}</h3>
+                    <p className="text-gray-600">{doc.description}</p>
+                  </div>
+                </div>
+                <div className="bg-gray-50 p-4 rounded-lg">
+                  <p className="text-sm text-gray-600">
+                    <AlertCircle className="w-4 h-4 inline mr-2 text-red-600" />
+                    {doc.note}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Registration Process Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Registration Process</h2>
+            <p className="text-xl text-gray-600">Follow these steps to complete your registration</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {registrationSteps.map((step) => (
+              <div key={step.step} className="relative">
+                <div className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100">
+                  <div
+                    className={`bg-gradient-to-r ${step.color} w-12 h-12 rounded-lg flex items-center justify-center mb-6`}
+                  >
+                    <step.icon className="w-6 h-6 text-white" />
+                  </div>
+                  <div className="text-5xl font-bold text-gray-200 mb-4">{step.step}</div>
+                  <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
+                  <p className="text-gray-600 mb-4">{step.description}</p>
+                  <p className="text-sm text-gray-500">{step.details}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Timeline Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Registration Timeline</h2>
+            <p className="text-xl text-gray-600">Important dates and deadlines for registration</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {timeline.map((phase) => (
+              <div
+                key={phase.phase}
+                className={`bg-white rounded-xl p-8 shadow-lg border-2 ${
+                  phase.status === "active"
+                    ? "border-red-500 ring-4 ring-red-100"
+                    : "border-transparent"
+                }`}
+              >
+                <div
+                  className={`w-12 h-12 rounded-full flex items-center justify-center mb-6 ${
+                    phase.status === "active" ? "bg-red-100 text-red-600" : "bg-gray-100 text-gray-600"
+                  }`}
+                >
+                  <phase.icon className="w-6 h-6" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">{phase.phase}</h3>
+                <p className="text-gray-600 mb-4">Deadline: {phase.deadline}</p>
+                <div
+                  className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
+                    phase.status === "active"
+                      ? "bg-red-100 text-red-600"
+                      : "bg-gray-100 text-gray-600"
+                  }`}
+                >
+                  {phase.discount}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Important Notes Section */}
+      <section className="py-20 bg-gradient-to-br from-gray-900 to-red-900 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Important Notes</h2>
+            <p className="text-xl text-gray-300">Please keep in mind the following information</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/20">
+              <AlertCircle className="w-8 h-8 text-red-400 mb-4" />
+              <h3 className="text-xl font-semibold mb-4">External Registration</h3>
+              <p className="text-gray-300">
+                This website does not handle live registrations. All registrations are processed through our
+                official event portals.
+              </p>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/20">
+              <Mail className="w-8 h-8 text-red-400 mb-4" />
+              <h3 className="text-xl font-semibold mb-4">Need Help?</h3>
+              <p className="text-gray-300">
+                For registration assistance, contact our support team at:
+                <br />
+                <a
+                  href="mailto:register@ekatrameetings.com"
+                  className="text-red-400 hover:text-red-300 transition-colors"
+                >
+                  register@ekatrameetings.com
+                </a>
+              </p>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/20">
+              <CreditCard className="w-8 h-8 text-red-400 mb-4" />
+              <h3 className="text-xl font-semibold mb-4">Secure Payments</h3>
+              <p className="text-gray-300">
+                All payments are processed securely through our trusted payment gateway partners.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Register?</h2>
+          <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
+            Join thousands of professionals and secure your spot at our upcoming events.
+          </p>
+          <Button
+            asChild
+            size="lg"
+            className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white rounded-full px-8 py-6 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300"
+          >
+            <Link href="https://register.ekatrameetings.com" target="_blank">
+              Go to Registration Portal
+              <ArrowRight className="ml-2" size={20} />
+            </Link>
+          </Button>
         </div>
       </section>
     </div>
