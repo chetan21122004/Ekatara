@@ -5,7 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
-import { Menu, X, ChevronDown, Search } from "lucide-react"
+import { Menu, X, ChevronDown, Search, Target } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Logo } from "@/components/ui/logo"
 
@@ -133,9 +133,12 @@ export default function Header() {
                 
                 <Button
                   asChild
-                  className="bg-red-600 hover:bg-red-700 text-white rounded-full px-6 py-2.5 font-medium shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200"
+                  className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white rounded-full px-6 py-2.5 font-medium shadow-md hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 flex items-center gap-2"
                 >
-                  <Link href="/contact">Contact Us</Link>
+                  <Link href="/contact">
+                    <Target className="h-4 w-4" />
+                    <span>Plan My Scientific Event</span>
+                  </Link>
                 </Button>
               </div>
             </div>
@@ -216,10 +219,11 @@ export default function Header() {
                 <div className="p-4 border-t border-gray-200/50">
                   <Button 
                     asChild 
-                    className="w-full bg-red-600 hover:bg-red-700 text-white rounded-xl py-6 font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200"
+                    className="w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white rounded-xl py-6 font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center gap-2"
                   >
                     <Link href="/contact" onClick={() => setIsMenuOpen(false)}>
-                      Contact Us
+                      <Target className="h-5 w-5" />
+                      <span>Plan My Scientific Event</span>
                     </Link>
                   </Button>
                 </div>

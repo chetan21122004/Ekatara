@@ -204,83 +204,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Timeline */}
-      <section className="py-24 bg-gradient-to-br from-gray-50 to-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 relative">
-            {/* Background decoration */}
-            <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-72 h-72 bg-red-50 rounded-full blur-3xl opacity-50"></div>
-            
-            <div className="relative">
-              <div className="inline-flex items-center px-4 py-2 rounded-full bg-red-100 text-red-600 text-sm font-medium mb-6">
-                <TrendingUp className="w-4 h-4 mr-2" />
-                Our Journey
-              </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Milestones of <span className="text-red-600">Excellence</span>
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Key moments that shaped our journey from a startup to a global event management leader.
-              </p>
-            </div>
-          </div>
-
-          <div className="relative">
-            {/* Timeline Line */}
-            <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-red-200 via-red-300 to-red-200 transform -translate-x-1/2"></div>
-
-            {/* Timeline Items */}
-            <div className="space-y-16">
-              {milestones.map((milestone, index) => (
-                <div 
-                  key={milestone.year}
-                  className={`relative flex items-center ${
-                    index % 2 === 0 ? 'justify-start' : 'justify-end'
-                  } group`}
-                >
-                  {/* Timeline node */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center">
-                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-red-500 to-red-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                      <span className="text-white font-bold">{milestone.year}</span>
-                    </div>
-                  </div>
-
-                  {/* Content card */}
-                  <div 
-                    className={`w-5/12 ${index % 2 === 0 ? 'pr-16' : 'pl-16'}`}
-                  >
-                    <div className="bg-white p-8 rounded-3xl shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 group-hover:border-red-200">
-                      <div className="flex items-center gap-4 mb-4">
-                        <div className="bg-red-50 p-3 rounded-2xl">
-                          {index === 0 && <Star className="text-red-600 w-6 h-6" />}
-                          {index === 1 && <Globe className="text-red-600 w-6 h-6" />}
-                          {index === 2 && <Lightbulb className="text-red-600 w-6 h-6" />}
-                          {index === 3 && <Target className="text-red-600 w-6 h-6" />}
-                          {index === 4 && <Users className="text-red-600 w-6 h-6" />}
-                          {index === 5 && <Award className="text-red-600 w-6 h-6" />}
-                          {index === 6 && <TrendingUp className="text-red-600 w-6 h-6" />}
-                        </div>
-                        <h3 className="text-2xl font-bold text-gray-900">{milestone.title}</h3>
-                      </div>
-                      <p className="text-gray-600 leading-relaxed">{milestone.description}</p>
-                      
-                      {/* Decorative line */}
-                      <div className="mt-6 border-t border-gray-100 pt-4">
-                        <div className="flex items-center text-red-600 text-sm font-medium">
-                          <span>Learn more</span>
-                          <svg className="w-4 h-4 ml-1" viewBox="0 0 24 24" fill="none">
-                            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+   
 
       {/* Global Presence */}
       <section className="py-24 bg-white">
@@ -533,29 +457,54 @@ export default function AboutPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-r from-red-600 to-red-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="py-24 bg-gradient-to-r from-red-600 to-red-700 relative overflow-hidden">
+        {/* Background decorative elements */}
+        <div className="absolute top-0 left-0 w-full h-full opacity-10">
+          <div className="absolute top-10 right-10 w-40 h-40 rounded-full bg-white"></div>
+          <div className="absolute bottom-10 left-10 w-20 h-20 rounded-full bg-white"></div>
+          <div className="absolute top-1/3 left-1/4 w-12 h-12 rounded-full bg-white"></div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Ready to Work Together?</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Ready to collaborate?</h2>
             <p className="text-xl text-red-100 mb-12">
               Let's create something extraordinary together. Our team is ready to bring your vision to life with our
               global expertise and local knowledge.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <div className="flex flex-wrap gap-6 justify-center">
               <Button
                 asChild
                 size="lg"
-                className="bg-white text-red-600 hover:bg-gray-100 rounded-full px-8 py-6 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+                className="bg-white text-red-600 hover:bg-gray-100 rounded-full px-8 py-6 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 flex items-center"
               >
-                <Link href="/contact">Start Your Project</Link>
+                <Link href="/contact">
+                  <Target className="mr-2 h-5 w-5" />
+                  <span>Plan My Scientific Event</span>
+                </Link>
               </Button>
+              
               <Button
                 asChild
                 size="lg"
-                className="bg-white text-red-600 hover:bg-gray-100 rounded-full px-8 py-6 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+                className="bg-white text-red-600 hover:bg-gray-100 rounded-full px-8 py-6 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 flex items-center"
               >
-                <Link href="/services">Explore Our Services</Link>
+                <Link href="/technology">
+                  <Lightbulb className="mr-2 h-5 w-5" />
+                  <span>Request a Demo</span>
+                </Link>
+              </Button>
+              
+              <Button
+                asChild
+                size="lg"
+                className="bg-white text-red-600 hover:bg-gray-100 rounded-full px-8 py-6 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 flex items-center"
+              >
+                <Link href="/services">
+                  <Globe className="mr-2 h-5 w-5" />
+                  <span>Explore Our Services</span>
+                </Link>
               </Button>
             </div>
           </div>

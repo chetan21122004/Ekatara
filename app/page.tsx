@@ -133,7 +133,7 @@ export default function HomePage() {
         toggleActions: "play none none reverse"
       },
       opacity: 0,
-      y: 50,
+      y: 50, 
       stagger: 0.2,
       duration: 0.8,
       ease: "power2.out"
@@ -161,18 +161,7 @@ export default function HomePage() {
       {/* Hero Section */}
       <section ref={heroRef} className="relative min-h-screen bg-gradient-to-b from-white to-gray-50 overflow-hidden">
         {/* Abstract Background Elements */}
-        <div className="absolute inset-0">
-          <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-br from-red-50 to-transparent rounded-bl-full opacity-70"></div>
-          <div className="absolute bottom-0 left-0 w-1/3 h-2/3 bg-gradient-to-tr from-gray-50 to-transparent rounded-tr-full opacity-50"></div>
-          <div className="absolute inset-0">
-            <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-red-400 rounded-full animate-ping"></div>
-            <div className="absolute top-1/3 right-1/3 w-3 h-3 bg-red-300 rounded-full animate-pulse"></div>
-            <div className="absolute bottom-1/4 right-1/4 w-2 h-2 bg-red-500 rounded-full animate-bounce"></div>
-          </div>
-          {/* Animated Gradient Orbs */}
-          <div className="absolute top-1/2 left-1/4 w-64 h-64 bg-gradient-to-r from-red-400/20 to-pink-400/20 rounded-full blur-3xl animate-float"></div>
-          <div className="absolute bottom-1/4 right-1/3 w-48 h-48 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }}></div>
-        </div>
+      
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-screen flex items-center">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -211,14 +200,14 @@ export default function HomePage() {
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Link>
                 </Button>
-                <Button
+                {/* <Button
                   asChild
                   variant="outline"
                   size="lg"
                   className="glass border-2 border-gray-200 hover:border-red-600 text-gray-700 hover:text-red-600 rounded-full px-8 py-6 text-lg font-medium transition-colors duration-300 hover-scale"
                 >
                   <Link href="/portfolio">View Portfolio</Link>
-                </Button>
+                </Button> */}
               </div>
 
               {/* Achievement Cards */}
