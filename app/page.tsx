@@ -557,7 +557,7 @@ export default function HomePage() {
               Global Reach
             </div>
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Three Continents, <span className="text-red-500">One Vision</span>
+              Three Countries, <span className="text-red-500">One Vision</span>
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               Our strategic global presence ensures local expertise with international standards, delivering exceptional
