@@ -42,7 +42,7 @@ export default function Header() {
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out border-b border-red-500 mb-3
           ${scrolled 
             ? "bg-white/80 shadow-lg backdrop-blur-lg h-16" 
-            : "bg-transparent h-24"
+            : "bg-transparent h-16"
           }`}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/70 to-white/50 backdrop-blur-md" />
