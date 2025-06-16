@@ -168,24 +168,24 @@ export default function HomePage() {
             {/* Left Content */}
             <div className="space-y-8">
               <div className="hero-badge inline-flex items-center space-x-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full shadow-lg border border-gray-100 hover-scale">
-                <Star className="w-4 h-4 text-red-600" />
+                <TrendingUp className="w-4 h-4 text-blue-600" />
                 <span className="text-sm font-medium text-gradient">
-                  Premier Event Management
+                  Leading Scientific Conference Organizer
                 </span>
               </div>
 
               <div className="space-y-4">
                 <h1 className="hero-title text-6xl lg:text-7xl font-bold tracking-tight">
-                  <span className="block text-gray-900">Craft</span>
+                  <span className="block text-gray-900">Advancing</span>
                   <span className="block mt-1 text-gradient">
-                    Memorable
+                    Scientific
                   </span>
-                  <span className="block mt-1 text-gray-800">Experiences</span>
+                  <span className="block mt-1 text-gray-800">Innovation</span>
                 </h1>
 
                 <p className="hero-description text-xl text-gray-600 max-w-xl">
-                  Transform your events into extraordinary experiences. From intimate gatherings to global conferences, 
-                  we bring your vision to life with precision and creativity.
+                  Empowering researchers and academicians worldwide through premier scientific conferences. 
+                  From medical sciences to biotechnology, we create platforms for knowledge exchange and breakthrough discoveries.
                 </p>
               </div>
 
@@ -193,40 +193,40 @@ export default function HomePage() {
                 <Button
                   asChild
                   size="lg"
-                  className="bg-gradient-custom hover:opacity-90 text-white rounded-full px-8 py-6 text-lg font-medium shadow-lg hover:shadow-red-500/25 transition-all duration-300 hover-scale"
+                  className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white rounded-full px-8 py-6 text-lg font-medium shadow-lg hover:shadow-blue-500/25 transition-all duration-300 hover:scale-105"
                 >
-                  <Link href="/services">
-                    Get Started
+                  <Link href="/registration">
+                    Submit Abstract
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Link>
                 </Button>
-                {/* <Button
+                <Button
                   asChild
                   variant="outline"
                   size="lg"
-                  className="glass border-2 border-gray-200 hover:border-red-600 text-gray-700 hover:text-red-600 rounded-full px-8 py-6 text-lg font-medium transition-colors duration-300 hover-scale"
+                  className="glass border-2 border-gray-200 hover:border-blue-600 text-gray-700 hover:text-blue-600 rounded-full px-8 py-6 text-lg font-medium transition-colors duration-300 hover:scale-105"
                 >
-                  <Link href="/portfolio">View Portfolio</Link>
-                </Button> */}
+                  <Link href="/about">Explore Conferences</Link>
+                </Button>
               </div>
 
               {/* Achievement Cards */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8">
                 <div className="achievement-card glass card-shadow rounded-2xl p-4">
-                  <div className="text-3xl font-bold text-gradient">500+</div>
-                  <div className="text-sm text-gray-600">Events Delivered</div>
-                </div>
-                <div className="achievement-card glass card-shadow rounded-2xl p-4">
-                  <div className="text-3xl font-bold text-gradient">50K+</div>
-                  <div className="text-sm text-gray-600">Happy Attendees</div>
+                  <div className="text-3xl font-bold text-gradient">8+</div>
+                  <div className="text-sm text-gray-600">Years Experience</div>
                 </div>
                 <div className="achievement-card glass card-shadow rounded-2xl p-4">
                   <div className="text-3xl font-bold text-gradient">3</div>
                   <div className="text-sm text-gray-600">Global Offices</div>
                 </div>
                 <div className="achievement-card glass card-shadow rounded-2xl p-4">
-                  <div className="text-3xl font-bold text-gradient">98%</div>
-                  <div className="text-sm text-gray-600">Satisfaction Rate</div>
+                  <div className="text-3xl font-bold text-gradient">100+</div>
+                  <div className="text-sm text-gray-600">Scientific Events</div>
+                </div>
+                <div className="achievement-card glass card-shadow rounded-2xl p-4">
+                  <div className="text-3xl font-bold text-gradient">50K+</div>
+                  <div className="text-sm text-gray-600">Researchers</div>
                 </div>
               </div>
             </div>
@@ -371,7 +371,7 @@ export default function HomePage() {
             <div className="format-card group relative overflow-hidden rounded-3xl bg-white card-shadow hover-scale">
               <div className="relative h-64">
                 <Image
-                  src="/images/virtual-event.jpg"
+                  src="/images/networking-event.jpg"
                   alt="Hybrid Events"
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -413,7 +413,7 @@ export default function HomePage() {
             <div className="format-card group relative overflow-hidden rounded-3xl bg-white card-shadow hover-scale">
               <div className="relative h-64">
                 <Image
-                  src="/images/networking-event.jpg"
+                  src="/images/virtual-event.jpg"
                   alt="Virtual Events"
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -543,6 +543,96 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Values Section */}
+      <section className="py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-blue-400/10 to-purple-400/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/3 right-1/3 w-72 h-72 bg-gradient-to-r from-red-400/10 to-pink-400/10 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-600 text-sm font-medium mb-6 hover-scale">
+              <Star className="w-4 h-4 mr-2" />
+              Our Core Values
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              The Principles That <span className="text-gradient">Guide Us</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Our values shape every decision we make and every interaction we have. They're the foundation of our commitment to excellence in scientific event management.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Innovation */}
+            <div className="group relative bg-white rounded-3xl p-8 card-shadow hover-scale">
+              <div className="bg-gradient-custom p-3 rounded-2xl w-fit mb-6">
+                <Zap className="text-white" size={24} />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Innovation</h3>
+              <p className="text-gray-600">
+                Embracing cutting-edge technology and creative solutions to revolutionize scientific conferences and knowledge sharing.
+              </p>
+            </div>
+
+            {/* Excellence */}
+            <div className="group relative bg-white rounded-3xl p-8 card-shadow hover-scale">
+              <div className="bg-gradient-custom p-3 rounded-2xl w-fit mb-6">
+                <Star className="text-white" size={24} />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Excellence</h3>
+              <p className="text-gray-600">
+                Maintaining the highest standards in every aspect of our service, from planning to execution and follow-up.
+              </p>
+            </div>
+
+            {/* Collaboration */}
+            <div className="group relative bg-white rounded-3xl p-8 card-shadow hover-scale">
+              <div className="bg-gradient-custom p-3 rounded-2xl w-fit mb-6">
+                <Users className="text-white" size={24} />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Collaboration</h3>
+              <p className="text-gray-600">
+                Fostering meaningful partnerships and creating platforms for researchers to connect and share knowledge globally.
+              </p>
+            </div>
+
+            {/* Integrity */}
+            <div className="group relative bg-white rounded-3xl p-8 card-shadow hover-scale">
+              <div className="bg-gradient-custom p-3 rounded-2xl w-fit mb-6">
+                <CheckCircle className="text-white" size={24} />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Integrity</h3>
+              <p className="text-gray-600">
+                Operating with transparency, ethical practices, and unwavering commitment to our clients' success.
+              </p>
+            </div>
+          </div>
+
+          {/* Stats Section */}
+          <div className="mt-20 grid grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="bg-white rounded-3xl p-6 text-center card-shadow hover-scale">
+              <div className="text-4xl font-bold text-gradient mb-2">100%</div>
+              <div className="text-gray-600">Client Retention</div>
+            </div>
+            <div className="bg-white rounded-3xl p-6 text-center card-shadow hover-scale">
+              <div className="text-4xl font-bold text-gradient mb-2">24/7</div>
+              <div className="text-gray-600">Support Available</div>
+            </div>
+            <div className="bg-white rounded-3xl p-6 text-center card-shadow hover-scale">
+              <div className="text-4xl font-bold text-gradient mb-2">50+</div>
+              <div className="text-gray-600">Expert Team</div>
+            </div>
+            <div className="bg-white rounded-3xl p-6 text-center card-shadow hover-scale">
+              <div className="text-4xl font-bold text-gradient mb-2">15+</div>
+              <div className="text-gray-600">Industry Awards</div>
             </div>
           </div>
         </div>
@@ -693,7 +783,7 @@ export default function HomePage() {
               </div>
               
               <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-                Ready to Create Something <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-200 to-white">Extraordinary?</span>
+                Ready to <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-200 to-white">Collaborate?</span>
               </h2>
               
               <p className="text-xl text-white/90 mb-12 max-w-2xl mx-auto leading-relaxed">
@@ -705,10 +795,10 @@ export default function HomePage() {
                 <Button
                   asChild
                   size="lg"
-                  className="bg-white text-red-600 hover:bg-gray-50 rounded-full px-10 py-7 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 backdrop-blur-sm"
+                  className="bg-gradient-to-r from-red-600 to-red-500 hover:from-red-700 hover:to-red-600 text-white rounded-full px-10 py-7 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
                 >
-                  <Link href="/contact" className="flex items-center">
-                    Start Your Project
+                  <Link href="/registration" className="flex items-center">
+                    Register Now
                     <ArrowRight className="ml-2 w-5 h-5" />
                   </Link>
                 </Button>
@@ -718,32 +808,14 @@ export default function HomePage() {
                   variant="outline"
                   className="backdrop-blur-sm bg-transparent border-2 border-white text-white hover:bg-white/10 rounded-full px-10 py-7 text-lg font-semibold transition-all duration-300 hover:scale-105"
                 >
-                  <Link href="/event-types" className="flex items-center">
-                    Explore Event Types
+                  <Link href="/about" className="flex items-center">
+                    Learn More
                     <ArrowRight className="ml-2 w-5 h-5 opacity-70" />
                   </Link>
                 </Button>
               </div>
 
-              {/* Modern Trust Indicators */}
-              <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-white/20 pt-10">
-                <div className="text-center backdrop-blur-sm bg-white/5 rounded-xl p-6 transition-transform duration-300 hover:scale-105 hover:bg-white/10">
-                  <div className="text-2xl font-bold text-white mb-1">ISO 9001</div>
-                  <div className="text-white/70 text-sm">Certified</div>
-                </div>
-                <div className="text-center backdrop-blur-sm bg-white/5 rounded-xl p-6 transition-transform duration-300 hover:scale-105 hover:bg-white/10">
-                  <div className="text-2xl font-bold text-white mb-1">GDPR</div>
-                  <div className="text-white/70 text-sm">Compliant</div>
-                </div>
-                <div className="text-center backdrop-blur-sm bg-white/5 rounded-xl p-6 transition-transform duration-300 hover:scale-105 hover:bg-white/10">
-                  <div className="text-2xl font-bold text-white mb-1">24/7</div>
-                  <div className="text-white/70 text-sm">Support</div>
-                </div>
-                <div className="text-center backdrop-blur-sm bg-white/5 rounded-xl p-6 transition-transform duration-300 hover:scale-105 hover:bg-white/10">
-                  <div className="text-2xl font-bold text-white mb-1">500+</div>
-                  <div className="text-white/70 text-sm">Events</div>
-                </div>
-              </div>
+            
             </div>
           </div>
         </div>

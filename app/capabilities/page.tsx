@@ -655,56 +655,6 @@ export default function CapabilitiesPage() {
           </div>
         </div>
       </section>
-
-      {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-r from-red-600 to-red-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Experience Our Technology</h2>
-            <p className="text-xl text-red-100 mb-12">
-              Discover how our advanced capabilities and cutting-edge technology can transform your next event into an
-              exceptional experience that delivers measurable results.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Button
-                asChild
-                size="lg"
-                className="bg-white text-red-600 hover:bg-gray-100 rounded-full px-8 py-6 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
-              >
-                <Link href="/contact">Schedule a Demo</Link>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                className="bg-white text-red-600 hover:bg-gray-100 rounded-full px-8 py-6 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
-              >
-                <Link href="/services">View Our Services</Link>
-              </Button>
-            </div>
-
-            {/* Tech Trust Indicators */}
-            <div className="mt-16 flex flex-wrap justify-center items-center gap-8 opacity-80">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-white">SOC 2</div>
-                <div className="text-red-200 text-sm">Certified</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-white">99.9%</div>
-                <div className="text-red-200 text-sm">Uptime</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-white">150+</div>
-                <div className="text-red-200 text-sm">CDN Nodes</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-white">100K+</div>
-                <div className="text-red-200 text-sm">Concurrent Users</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   )
 }

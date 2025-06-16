@@ -31,7 +31,6 @@ export default function Header() {
     { name: "Event Types", href: "/event-types" },
     { name: "Abstract Submission", href: "/abstract" },
     { name: "Registration", href: "/registration" },
-    { name: "Payment", href: "/payment" },
     { name: "Media", href: "/media" },
     { name: "FAQ", href: "/faq" },
     { name: "Contact", href: "/contact" },

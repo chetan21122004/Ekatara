@@ -204,8 +204,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-   
-
       {/* Global Presence */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -452,61 +450,6 @@ export default function AboutPage() {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-r from-red-600 to-red-700 relative overflow-hidden">
-        {/* Background decorative elements */}
-        <div className="absolute top-0 left-0 w-full h-full opacity-10">
-          <div className="absolute top-10 right-10 w-40 h-40 rounded-full bg-white"></div>
-          <div className="absolute bottom-10 left-10 w-20 h-20 rounded-full bg-white"></div>
-          <div className="absolute top-1/3 left-1/4 w-12 h-12 rounded-full bg-white"></div>
-        </div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Ready to collaborate?</h2>
-            <p className="text-xl text-red-100 mb-12">
-              Let's create something extraordinary together. Our team is ready to bring your vision to life with our
-              global expertise and local knowledge.
-            </p>
-
-            <div className="flex flex-wrap gap-6 justify-center">
-              <Button
-                asChild
-                size="lg"
-                className="bg-white text-red-600 hover:bg-gray-100 rounded-full px-8 py-6 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 flex items-center"
-              >
-                <Link href="/contact">
-                  <Target className="mr-2 h-5 w-5" />
-                  <span>Plan My Scientific Event</span>
-                </Link>
-              </Button>
-              
-              <Button
-                asChild
-                size="lg"
-                className="bg-white text-red-600 hover:bg-gray-100 rounded-full px-8 py-6 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 flex items-center"
-              >
-                <Link href="/technology">
-                  <Lightbulb className="mr-2 h-5 w-5" />
-                  <span>Request a Demo</span>
-                </Link>
-              </Button>
-              
-              <Button
-                asChild
-                size="lg"
-                className="bg-white text-red-600 hover:bg-gray-100 rounded-full px-8 py-6 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 flex items-center"
-              >
-                <Link href="/services">
-                  <Globe className="mr-2 h-5 w-5" />
-                  <span>Explore Our Services</span>
-                </Link>
-              </Button>
-            </div>
           </div>
         </div>
       </section>
