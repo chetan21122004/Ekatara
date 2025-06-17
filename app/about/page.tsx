@@ -83,7 +83,7 @@ export default function AboutPage() {
 
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
                 A global leader in professional event management with a passion for creating exceptional experiences
-                that bring people together and drive business success across three continents.
+                that bring people together and drive business success across three Countries.
               </p>
 
               <div className="grid grid-cols-2 gap-6 mb-8">
@@ -213,7 +213,7 @@ export default function AboutPage() {
               Global Reach
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Strategic Offices Across <span className="text-red-600">Three Continents</span>
+              Strategic Offices Across <span className="text-red-600">Three Countries</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Our global presence ensures local expertise with international standards, delivering exceptional events

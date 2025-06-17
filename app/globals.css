@@ -53,6 +53,20 @@ html {
   animation: float 3s ease-in-out infinite;
 }
 
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll linear infinite;
+  animation-fill-mode: forwards;
+}
+
 /* Glass effect */
 .glass {
   background: rgba(255, 255, 255, 0.1);

@@ -20,6 +20,7 @@ import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { useEffect, useRef } from "react"
+import { ClientScroller } from "@/components/client-scroller"
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger)
@@ -450,6 +451,55 @@ export default function HomePage() {
                 </Button>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Client Showcase Section */}
+      <section className="py-24 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+        {/* Subtle background patterns */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
+          <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-6">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-50 text-blue-600 text-sm font-medium mb-6 hover:bg-blue-100 transition-colors">
+              <Building className="w-4 h-4 mr-2" />
+              Our Global Partners
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Trusted by Leading <span className="text-gradient">Institutions</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              We collaborate with prestigious organizations worldwide to advance scientific research and knowledge sharing through exceptional events and conferences.
+            </p>
+          </div>
+
+       
+
+          {/* Scrollers with more spacing */}
+          <div className="">
+            <div className="bg-gradient-to-r from-white via-gray-50 to-white ">
+              <ClientScroller direction="left" speed="slow" className="py-4" />
+            </div>
+            <div className="bg-gradient-to-r from-white via-gray-50 to-white ">
+              <ClientScroller direction="right" speed="slow" className="py-4" />
+            </div>
+          </div>
+
+          {/* CTA Button */}
+          <div className="mt-4 text-center">
+            <Button
+              asChild
+              className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white rounded-full px-8 py-6 text-lg font-medium shadow-lg hover:shadow-blue-500/25 transition-all duration-300 hover:scale-105"
+            >
+              <Link href="/contact">
+                Become a Partner
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
