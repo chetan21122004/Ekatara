@@ -171,18 +171,18 @@ export default function Footer() {
                 {[
                   {
                     city: "Pune, India",
-                    address: "Tech Park, Hinjewadi",
-                    phone: "+91 20 4567 8900"
+                    address: "Baner",
+                    phone: "+91-9370172365"
                   },
                   {
                     city: "Dubai, UAE",
                     address: "Business Bay Tower",
-                    phone: "+971 4 567 8900"
+                    phone: "+91 9823383177"
                   },
                   {
                     city: "Rotterdam, Netherlands",
                     address: "Wilhelminaplein 1",
-                    phone: "+31 10 567 8900"
+                    phone: "+91 9823383177"
                   }
                 ].map((office, index) => (
                   <motion.div

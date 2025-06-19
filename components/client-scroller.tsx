@@ -32,6 +32,9 @@ export function ClientScroller({
     "/clients/client_15.png",
     "/clients/client_16.png",
     "/clients/client_17.png",
+    "/clients/client_18.png",
+    "/clients/client_19.png",
+    "/clients/client_20.png",
   ])
 
   // Speed mapping in seconds (adjusted for smoother animation)
@@ -69,37 +72,14 @@ export function ClientScroller({
                 src={client}
                 alt={`Client Logo ${index + 1}`}
                 fill
-                className="object-contain p-4 transition-opacity duration-300 group-hover:opacity-100 opacity-70"
+                className="object-contain p-4 "
                 sizes="192px"
               />
             </div>
           </div>
         ))}
       </div>
-      <div className="flex animate-scroll" style={{
-        width: `${containerWidth}px`,
-        animationDirection: direction === "left" ? "normal" : "reverse",
-        animationDuration: speedMap[speed],
-        animationPlayState: "running",
-      }}>
-        {clients.map((client, index) => (
-          <div
-            key={index}
-            className="relative w-48 h-32 mx-8 flex-shrink-0 rounded-xl bg-white shadow-md transition-all duration-300 hover:shadow-xl"
-            style={{ aspectRatio: '3/2' }}
-          >
-            <div className="absolute inset-4 flex items-center justify-center">
-              <Image
-                src={client}
-                alt={`Client Logo ${index + 1}`}
-                fill
-                className="object-contain p-4 transition-opacity duration-300 group-hover:opacity-100 opacity-70"
-                sizes="192px"
-              />
-            </div>
-          </div>
-        ))}
-      </div>
+      
     </div>
   )
 } 
