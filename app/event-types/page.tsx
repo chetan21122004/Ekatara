@@ -1,219 +1,213 @@
 import Image from "next/image"
-import {
-  Smartphone,
-  BarChart3,
-  Users,
-  Globe,
-  Zap,
-  Shield,
-  Camera,
-  Headphones,
-  Calendar,
-  CreditCard,
-  FileText,
-  Settings,
-  CheckCircle,
-  ArrowRight,
-  Lightbulb,
-  Target,
-  TrendingUp,
-  Lock,
-  Wifi,
-  Monitor,
-  Database,
-  Cloud,
-  Cpu,
-  Clock,
-} from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import {
+  Users,
+  Building,
+  Handshake,
+  Store,
+  Zap,
+  Calendar,
+  Globe,
+  CheckCircle,
+  ArrowRight,
+  Award,
+  Target,
+  Briefcase,
+  Lightbulb,
+  PieChart,
+  Presentation,
+  UserPlus,
+  MessageSquare,
+  Coffee,
+  Laptop,
+  Monitor,
+  Star,
+  BarChart3,
+} from "lucide-react"
 
-export default function CapabilitiesPage() {
-  const technologyCapabilities = [
+export default function EventTypesPage() {
+  const eventTypes = [
     {
-      icon: Smartphone,
-      title: "Mobile Event Apps",
+      icon: Users,
+      title: "Conference",
       description:
-        "Custom mobile applications with networking features, agenda management, and real-time notifications.",
+        "Large-scale professional conferences with multiple tracks, keynote speakers, and networking opportunities.",
       features: [
-        "Native iOS & Android apps",
-        "Real-time push notifications",
-        "Interactive networking",
-        "Offline functionality",
-        "Custom branding",
-        "Multi-language support",
+        "Multi-track agenda management",
+        "Keynote speaker coordination",
+        "Exhibition space management",
+        "Networking facilitation",
+        "Live streaming capabilities",
       ],
+      idealFor: "Academic institutions, professional associations, industry leaders",
+      image: "/images/conference-room.jpg",
       color: "from-blue-500 to-blue-600",
       bgColor: "from-blue-50 to-blue-100",
     },
     {
-      icon: BarChart3,
-      title: "Real-time Analytics",
-      description: "Live event dashboards with attendance tracking, engagement metrics, and performance indicators.",
+      icon: Building,
+      title: "Internal Event",
+      description: "Corporate internal events including town halls, training sessions, and company-wide meetings.",
       features: [
-        "Live attendance tracking",
-        "Engagement heatmaps",
-        "Session analytics",
-        "ROI measurement",
-        "Custom reporting",
-        "Predictive insights",
+        "Employee engagement tools",
+        "Internal communication systems",
+        "Training module integration",
+        "Feedback collection",
+        "Performance tracking",
       ],
-      color: "from-green-500 to-green-600",
-      bgColor: "from-green-50 to-green-100",
-    },
-    {
-      icon: Globe,
-      title: "Virtual Event Platforms",
-      description:
-        "Comprehensive virtual and hybrid event solutions with interactive features and global accessibility.",
-      features: [
-        "Custom virtual environments",
-        "HD video streaming",
-        "Interactive breakout rooms",
-        "Virtual networking",
-        "Global CDN delivery",
-        "Multi-timezone support",
-      ],
+      idealFor: "Corporations, HR departments, training organizations",
+      image: "/images/team-meeting.jpg",
       color: "from-purple-500 to-purple-600",
       bgColor: "from-purple-50 to-purple-100",
     },
     {
-      icon: Zap,
-      title: "Lead Capture Systems",
+      icon: Handshake,
+      title: "Networking",
       description:
-        "Advanced lead generation tools with QR code scanning, business card exchange, and automated follow-up.",
+        "Focused networking events designed to facilitate meaningful business connections and relationships.",
       features: [
-        "QR code lead capture",
-        "Digital business cards",
-        "CRM integration",
-        "Automated follow-up",
-        "Lead scoring",
-        "Export capabilities",
+        "AI-powered matchmaking",
+        "Digital business card exchange",
+        "Structured networking sessions",
+        "Follow-up automation",
+        "ROI measurement",
       ],
+      idealFor: "Business associations, chambers of commerce, professional groups",
+      image: "/images/networking-event.jpg",
+      color: "from-green-500 to-green-600",
+      bgColor: "from-green-50 to-green-100",
+    },
+    {
+      icon: Store,
+      title: "Trade Show",
+      description: "Comprehensive trade show management with exhibitor coordination and lead generation tools.",
+      features: [
+        "Exhibitor management portal",
+        "Lead capture systems",
+        "Floor plan management",
+        "Visitor tracking",
+        "Post-show analytics",
+      ],
+      idealFor: "Industry associations, exhibition organizers, B2B companies",
+      image: "/images/trade-show.jpg",
       color: "from-orange-500 to-orange-600",
       bgColor: "from-orange-50 to-orange-100",
     },
     {
-      icon: Shield,
-      title: "Security & Compliance",
-      description: "Enterprise-grade security measures, GDPR compliance, and data protection protocols.",
+      icon: Zap,
+      title: "Sales Kickoff",
+      description: "High-energy sales events designed to motivate teams and launch new initiatives or products.",
       features: [
-        "GDPR compliance",
-        "End-to-end encryption",
-        "SOC 2 certification",
-        "Data anonymization",
-        "Audit trails",
-        "Privacy controls",
+        "Motivational content delivery",
+        "Product launch coordination",
+        "Team building activities",
+        "Performance recognition",
+        "Goal setting workshops",
       ],
+      idealFor: "Sales organizations, product companies, franchise networks",
+      image: "/images/speaker-stage.jpg",
       color: "from-red-500 to-red-600",
       bgColor: "from-red-50 to-red-100",
     },
-    {
-      icon: Camera,
-      title: "Live Streaming & Production",
-      description:
-        "Professional broadcasting capabilities with multi-camera setups, interactive features, and global reach.",
-      features: [
-        "Multi-camera production",
-        "4K streaming quality",
-        "Interactive overlays",
-        "Global distribution",
-        "Recording & playback",
-        "Social media integration",
-      ],
-      color: "from-indigo-500 to-indigo-600",
-      bgColor: "from-indigo-50 to-indigo-100",
-    },
   ]
 
-  const platformFeatures = [
+  const eventFormats = [
     {
-      category: "Registration & Management",
+      title: "Live Events",
       icon: Users,
-      capabilities: [
-        {
-          title: "Custom Registration Forms",
-          description: "Tailored registration workflows with conditional logic and custom fields",
-          icon: FileText,
-        },
-        {
-          title: "Payment Processing",
-          description: "Secure payment gateways with multiple currency support",
-          icon: CreditCard,
-        },
-        {
-          title: "Automated Communications",
-          description: "Email sequences, confirmations, and reminder systems",
-          icon: Headphones,
-        },
-        {
-          title: "Attendee Management",
-          description: "Complete attendee lifecycle management and tracking",
-          icon: Users,
-        },
+      description: "In-person events with full on-site management, technical support, and attendee services.",
+      features: [
+        "On-site registration and check-in",
+        "Audio/visual equipment management",
+        "Catering and logistics coordination",
+        "Real-time technical support",
       ],
+      image: "/images/conference-room.jpg",
+      color: "from-blue-500 to-blue-600",
+      bgColor: "from-blue-50 to-blue-100",
     },
     {
-      category: "Event Operations",
-      icon: Settings,
-      capabilities: [
-        {
-          title: "Agenda Management",
-          description: "Dynamic scheduling with speaker coordination and room management",
-          icon: Calendar,
-        },
-        {
-          title: "Technical Support",
-          description: "24/7 technical assistance and troubleshooting during events",
-          icon: Headphones,
-        },
-        {
-          title: "Integration Hub",
-          description: "Seamless integration with CRM, marketing, and business systems",
-          icon: Settings,
-        },
-        {
-          title: "Real-time Monitoring",
-          description: "Live event monitoring with instant issue detection and resolution",
-          icon: Monitor,
-        },
+      title: "Hybrid Events",
+      icon: Calendar,
+      description: "Combined in-person and virtual experiences that maximize reach and engagement.",
+      features: [
+        "Synchronized live and virtual content",
+        "Interactive Q&A across formats",
+        "Unified registration system",
+        "Cross-platform networking",
       ],
+      image: "/images/virtual-event.jpg",
+      color: "from-purple-500 to-purple-600",
+      bgColor: "from-purple-50 to-purple-100",
+    },
+    {
+      title: "Virtual Events",
+      icon: Zap,
+      description: "Fully digital experiences with interactive features and global accessibility.",
+      features: [
+        "Custom virtual event platforms",
+        "Live streaming and on-demand content",
+        "Virtual networking rooms",
+        "Digital exhibitor booths",
+      ],
+      image: "/images/networking-event.jpg",
+      color: "from-green-500 to-green-600",
+      bgColor: "from-green-50 to-green-100",
     },
   ]
 
-  const infrastructureStats = [
-    { label: "Global CDN Nodes", value: "150+", icon: Globe },
-    { label: "Concurrent Users", value: "100K+", icon: Users },
-    { label: "Uptime Guarantee", value: "99.9%", icon: TrendingUp },
-    { label: "Data Centers", value: "12", icon: Database },
-    { label: "Security Certifications", value: "5", icon: Shield },
-    { label: "API Endpoints", value: "200+", icon: Cpu },
-  ]
-
-  const innovationAreas = [
+  const industrySpecificEvents = [
     {
-      title: "AI-Powered Insights",
-      description: "Machine learning algorithms for attendee behavior analysis and event optimization",
+      industry: "Healthcare & Medical",
+      icon: Briefcase,
+      events: ["Medical Conferences", "Healthcare Symposiums", "Pharmaceutical Launches", "Medical Training"],
+      color: "from-blue-500 to-blue-600",
+      bgColor: "from-blue-50 to-blue-100",
+    },
+    {
+      industry: "Technology & Innovation",
       icon: Lightbulb,
-      features: ["Predictive analytics", "Behavior tracking", "Recommendation engine", "Smart scheduling"],
+      events: ["Tech Conferences", "Product Launches", "Developer Meetups", "Innovation Summits"],
+      color: "from-purple-500 to-purple-600",
+      bgColor: "from-purple-50 to-purple-100",
     },
     {
-      title: "Blockchain Integration",
-      description: "Secure, transparent credentialing and certificate management using blockchain technology",
-      icon: Lock,
-      features: ["Digital certificates", "Secure verification", "Immutable records", "Smart contracts"],
+      industry: "Finance & Business",
+      icon: PieChart,
+      events: ["Investment Summits", "Financial Conferences", "Shareholder Meetings", "Economic Forums"],
+      color: "from-green-500 to-green-600",
+      bgColor: "from-green-50 to-green-100",
     },
     {
-      title: "IoT Event Solutions",
-      description: "Internet of Things integration for smart venues and enhanced attendee experiences",
-      icon: Wifi,
-      features: ["Smart badges", "Environmental monitoring", "Crowd flow analysis", "Automated check-ins"],
+      industry: "Education & Research",
+      icon: Presentation,
+      events: ["Academic Conferences", "Research Symposiums", "Educational Workshops", "Student Competitions"],
+      color: "from-orange-500 to-orange-600",
+      bgColor: "from-orange-50 to-orange-100",
+    },
+  ]
+
+  const eventExperiences = [
+    {
+      title: "Networking Lounges",
+      icon: Coffee,
+      description: "Dedicated spaces for meaningful connections with AI-powered matchmaking.",
     },
     {
-      title: "AR/VR Experiences",
-      description: "Augmented and virtual reality solutions for immersive event experiences",
+      title: "Interactive Workshops",
+      icon: Laptop,
+      description: "Hands-on learning experiences with real-time collaboration tools.",
+    },
+    {
+      title: "Immersive Presentations",
       icon: Monitor,
-      features: ["Virtual venues", "AR networking", "3D presentations", "Immersive demos"],
+      description: "Engaging presentations with interactive elements and audience participation.",
+    },
+    {
+      title: "VIP Experiences",
+      icon: Star,
+      description: "Exclusive access and personalized experiences for key stakeholders.",
     },
   ]
 
@@ -231,11 +225,10 @@ export default function CapabilitiesPage() {
           ></div>
         </div>
 
-        {/* Floating Tech Elements */}
-        <div className="absolute top-20 left-10 w-20 h-20 bg-blue-100 rounded-full opacity-60 animate-pulse"></div>
-        <div className="absolute top-40 right-20 w-16 h-16 bg-purple-200 rounded-full opacity-40 animate-bounce"></div>
+        {/* Floating Elements */}
+        <div className="absolute top-20 left-10 w-20 h-20 bg-red-100 rounded-full opacity-60 animate-pulse"></div>
+        <div className="absolute top-40 right-20 w-16 h-16 bg-blue-200 rounded-full opacity-40 animate-bounce"></div>
         <div className="absolute bottom-40 left-20 w-12 h-12 bg-green-300 rounded-full opacity-50 animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-24 h-24 bg-orange-100 rounded-full opacity-30 animate-bounce"></div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -243,156 +236,249 @@ export default function CapabilitiesPage() {
             <div>
               <div className="mb-8">
                 <span className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-red-100 to-red-50 border border-red-200 text-red-700 text-sm font-semibold">
-                  <Cpu className="w-4 h-4 mr-2" />
-                  Advanced Technology
+                  <Calendar className="w-4 h-4 mr-2" />
+                  Specialized Expertise
                 </span>
               </div>
 
               <h1 className="text-5xl md:text-6xl font-bold mb-8 leading-tight">
-                <span className="text-gray-900">Cutting-Edge</span>
+                <span className="text-gray-900">Diverse</span>
                 <br />
                 <span className="bg-gradient-to-r from-red-600 to-red-700 bg-clip-text text-transparent">
-                  Event Technology
+                  Event Types
                 </span>
                 <br />
-                <span className="text-gray-700 text-4xl md:text-5xl">& Innovation</span>
+                <span className="text-gray-700 text-4xl md:text-5xl">Tailored Solutions</span>
               </h1>
 
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                Advanced event management tools and technologies that enable us to deliver exceptional experiences and
-                measurable results for every event, powered by enterprise-grade infrastructure.
+                We specialize in managing diverse event types, each with unique requirements and objectives. Our
+                expertise spans across industries and event formats to deliver exceptional experiences.
               </p>
 
-              <div className="grid grid-cols-2 gap-4 mb-8">
+              <div className="grid grid-cols-3 gap-6 mb-8">
                 <div className="text-center p-4 bg-white rounded-2xl shadow-lg border border-gray-100">
-                  <div className="text-2xl font-bold text-blue-600 mb-1">AI</div>
-                  <div className="text-xs text-gray-600">Powered</div>
+                  <div className="text-2xl font-bold text-blue-600 mb-1">5+</div>
+                  <div className="text-xs text-gray-600">Event Types</div>
                 </div>
                 <div className="text-center p-4 bg-white rounded-2xl shadow-lg border border-gray-100">
-                  <div className="text-2xl font-bold text-green-600 mb-1">Cloud</div>
-                  <div className="text-xs text-gray-600">Native</div>
+                  <div className="text-2xl font-bold text-red-600 mb-1">3</div>
+                  <div className="text-xs text-gray-600">Formats</div>
                 </div>
                 <div className="text-center p-4 bg-white rounded-2xl shadow-lg border border-gray-100">
-                  <div className="text-2xl font-bold text-purple-600 mb-1">Global</div>
-                  <div className="text-xs text-gray-600">Scale</div>
-                </div>
-                <div className="text-center p-4 bg-white rounded-2xl shadow-lg border border-gray-100">
-                  <div className="text-2xl font-bold text-red-600 mb-1">Secure</div>
-                  <div className="text-xs text-gray-600">Enterprise</div>
+                  <div className="text-2xl font-bold text-green-600 mb-1">12+</div>
+                  <div className="text-xs text-gray-600">Industries</div>
                 </div>
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button asChild className="bg-red-600 hover:bg-red-700 text-white rounded-full px-8 py-3">
                   <Link href="/contact">
-                    Schedule Demo
+                    Discuss Your Event
                     <ArrowRight className="ml-2" size={16} />
                   </Link>
                 </Button>
-                <Button  
+                <Button
                   asChild
                   variant="outline"
                   className="border-red-200 text-red-600 hover:bg-red-50 rounded-full px-8 py-3"
                 >
-                  <Link href="/services">View Services</Link>
+                  <Link href="/services">View Our Services</Link>
                 </Button>
               </div>
             </div>
 
-            {/* Right Content - Tech Showcase */}
+            {/* Right Content - Hero Image */}
             <div className="relative">
               <div className="relative rounded-3xl overflow-hidden shadow-2xl">
                 <Image
-                  src="/images/virtual-event.jpg"
-                  alt="Event Technology Platform"
+                  src="/images/conference-room.jpg"
+                  alt="Professional Conference"
                   width={600}
                   height={500}
                   className="object-cover w-full h-96"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-600/20 to-transparent"></div>
-
-                {/* Tech Overlay */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-xl">
-                    <div className="flex items-center space-x-4">
-                      <div className="bg-blue-100 p-3 rounded-xl">
-                        <Monitor className="text-blue-600" size={24} />
-                      </div>
-                      <div>
-                        <div className="text-lg font-bold text-gray-900">Live Platform</div>
-                        <div className="text-sm text-gray-600">Real-time Analytics</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-red-600/20 to-transparent"></div>
               </div>
 
-              {/* Floating Tech Cards */}
+              {/* Floating Event Type Cards */}
               <div className="absolute -top-6 -left-6 bg-white rounded-2xl shadow-xl p-4 border border-gray-100 transform -rotate-6 hover:rotate-0 transition-transform duration-300">
                 <div className="flex items-center space-x-3">
-                  <div className="bg-green-100 p-2 rounded-xl">
-                    <BarChart3 className="text-green-600" size={20} />
+                  <div className="bg-blue-100 p-2 rounded-xl">
+                    <Users className="text-blue-600" size={20} />
                   </div>
                   <div>
-                    <div className="text-sm font-bold text-gray-900">Analytics</div>
-                    <div className="text-xs text-gray-600">Real-time</div>
+                    <div className="text-sm font-bold text-gray-900">Conference</div>
+                    <div className="text-xs text-gray-600">Multi-track</div>
                   </div>
                 </div>
               </div>
 
               <div className="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-xl p-4 border border-gray-100 transform rotate-6 hover:rotate-0 transition-transform duration-300">
                 <div className="flex items-center space-x-3">
-                  <div className="bg-purple-100 p-2 rounded-xl">
-                    <Smartphone className="text-purple-600" size={20} />
+                  <div className="bg-green-100 p-2 rounded-xl">
+                    <Handshake className="text-green-600" size={20} />
                   </div>
                   <div>
-                    <div className="text-sm font-bold text-gray-900">Mobile</div>
-                    <div className="text-xs text-gray-600">Native Apps</div>
+                    <div className="text-sm font-bold text-gray-900">Networking</div>
+                    <div className="text-xs text-gray-600">AI-Powered</div>
                   </div>
                 </div>
               </div>
-
-              {/* Background Tech Decoration */}
-              <div className="absolute -z-10 top-10 right-10 w-72 h-72 bg-gradient-to-br from-blue-200 to-purple-300 rounded-full opacity-20 blur-3xl"></div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Technology Capabilities Grid */}
+      {/* Event Types Showcase */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-600 text-sm font-medium mb-6">
-              <Lightbulb className="w-4 h-4 mr-2" />
-              Technology Stack
+              <Target className="w-4 h-4 mr-2" />
+              Specialized Events
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Advanced <span className="text-red-600">Technology Capabilities</span>
+              Event Types We <span className="text-red-600">Excel In</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Cutting-edge tools and platforms that power modern event experiences and deliver exceptional results.
+              Each event type requires specific expertise and approach. We've mastered the unique requirements of
+              diverse event formats to deliver exceptional experiences.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {technologyCapabilities.map((capability, index) => (
+          <div className="space-y-16">
+            {eventTypes.map((eventType, index) => (
               <div
-                key={capability.title}
-                className="group bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 overflow-hidden"
+                key={eventType.title}
+                className={`flex flex-col ${
+                  index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
+                } gap-12 items-center`}
               >
-                <div className={`h-2 bg-gradient-to-r ${capability.color}`}></div>
-                <div className="p-8">
-                  <div className={`bg-gradient-to-r ${capability.bgColor} p-4 rounded-2xl w-fit mb-6`}>
-                    <capability.icon className="text-gray-700" size={32} />
+                {/* Image Side */}
+                <div className="lg:w-1/2 relative">
+                  <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+                    <Image
+                      src={eventType.image || "/placeholder.svg"}
+                      alt={eventType.title}
+                      width={600}
+                      height={400}
+                      className="object-cover w-full h-80"
+                    />
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-t ${eventType.color
+                        .replace("to-", "to-")
+                        .replace("from-", "from-")}/20 to-transparent`}
+                    ></div>
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">{capability.title}</h3>
-                  <p className="text-gray-600 mb-6">{capability.description}</p>
-                  <div className="space-y-2">
-                    {capability.features.map((feature, featureIndex) => (
-                      <div key={featureIndex} className="flex items-center text-sm text-gray-600">
-                        <CheckCircle className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
-                        {feature}
+
+                  {/* Floating Badge */}
+                  <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-6 border border-gray-100">
+                    <div className="flex items-center space-x-4">
+                      <div className={`bg-gradient-to-r ${eventType.bgColor} p-3 rounded-xl`}>
+                        <eventType.icon className="text-gray-700" size={24} />
+                      </div>
+                      <div>
+                        <div className="text-xl font-bold text-gray-900">{eventType.title}</div>
+                        <div className="text-sm text-gray-600">Specialist</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Content Side */}
+                <div className="lg:w-1/2">
+                  <h3 className="text-3xl font-bold text-gray-900 mb-4">{eventType.title}</h3>
+                  <p className="text-xl text-gray-600 mb-6">{eventType.description}</p>
+
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="text-lg font-semibold text-gray-900 mb-3">Key Features:</h4>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        {eventType.features.map((feature, featureIndex) => (
+                          <div key={featureIndex} className="flex items-center space-x-3">
+                            <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
+                            <span className="text-gray-600">{feature}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className={`bg-gradient-to-r ${eventType.bgColor} p-6 rounded-2xl`}>
+                      <h4 className="text-sm font-semibold text-gray-900 mb-2">Ideal For:</h4>
+                      <p className="text-gray-700">{eventType.idealFor}</p>
+                    </div>
+
+                    <Button
+                      asChild
+                      className={`bg-gradient-to-r ${eventType.color} text-white hover:opacity-90 rounded-full px-6 py-2`}
+                    >
+                      <Link href="/contact">
+                        Explore {eventType.title} Events
+                        <ArrowRight className="ml-2" size={16} />
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Event Formats */}
+      <section className="py-24 bg-gradient-to-br from-gray-50 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-green-100 text-green-600 text-sm font-medium mb-6">
+              <Globe className="w-4 h-4 mr-2" />
+              Delivery Options
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Flexible <span className="text-red-600">Event Formats</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Choose the delivery format that best suits your objectives, audience, and budget. We excel in all three
+              major event formats.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {eventFormats.map((format, index) => (
+              <div
+                key={format.title}
+                className="group bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden"
+              >
+                <div className="relative h-64">
+                  <Image
+                    src={format.image || "/placeholder.svg"}
+                    alt={format.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-t ${format.color
+                      .replace("to-", "to-")
+                      .replace("from-", "from-")}/40 to-transparent`}
+                  ></div>
+                  <div className="absolute top-6 left-6">
+                    <div className={`bg-white p-3 rounded-2xl shadow-lg`}>
+                      <format.icon className={`text-${format.color.split("-")[1].split(" ")[0]}-600`} size={24} />
+                    </div>
+                  </div>
+                  <div className="absolute bottom-6 left-6">
+                    <h3 className="text-2xl font-bold text-white">{format.title}</h3>
+                  </div>
+                </div>
+                <div className="p-8">
+                  <p className="text-gray-600 mb-6">{format.description}</p>
+                  <div className="space-y-3">
+                    {format.features.map((feature, featureIndex) => (
+                      <div key={featureIndex} className="flex items-center space-x-3">
+                        <div
+                          className={`w-2 h-2 bg-${format.color.split("-")[1].split(" ")[0]}-600 rounded-full`}
+                        ></div>
+                        <span className="text-gray-600 text-sm">{feature}</span>
                       </div>
                     ))}
                   </div>
@@ -400,258 +486,205 @@ export default function CapabilitiesPage() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* Platform Features */}
-      <section className="py-24 bg-gradient-to-br from-gray-50 to-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-green-100 text-green-600 text-sm font-medium mb-6">
-              <Settings className="w-4 h-4 mr-2" />
-              Platform Features
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Comprehensive <span className="text-red-600">Event Management</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              End-to-end platform capabilities covering every aspect of event planning, execution, and analysis.
+          <div className="mt-16 text-center">
+            <p className="text-lg text-gray-600 mb-8">
+              Not sure which format is right for your event? Our experts can help you determine the ideal approach.
             </p>
-          </div>
-
-          {platformFeatures.map((category, categoryIndex) => (
-            <div key={category.category} className="mb-16">
-              <div className="text-center mb-12">
-                <div className="bg-white p-4 rounded-2xl shadow-lg border border-gray-100 w-fit mx-auto mb-4">
-                  <category.icon className="text-red-600" size={32} />
-                </div>
-                <h3 className="text-3xl font-bold text-gray-900">{category.category}</h3>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {category.capabilities.map((capability, capIndex) => (
-                  <div
-                    key={capability.title}
-                    className="group bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl hover:border-red-200 transition-all duration-300"
-                  >
-                    <div className="bg-red-50 p-3 rounded-2xl w-fit mb-4 group-hover:bg-red-100 transition-colors">
-                      <capability.icon className="text-red-600" size={24} />
-                    </div>
-                    <h4 className="text-lg font-bold text-gray-900 mb-2">{capability.title}</h4>
-                    <p className="text-gray-600 text-sm">{capability.description}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Infrastructure Stats */}
-      <section className="py-24 bg-gradient-to-br from-gray-900 to-black text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 text-white text-sm font-medium mb-6">
-              <Cloud className="w-4 h-4 mr-2" />
-              Global Infrastructure
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Enterprise-Grade <span className="text-red-500">Infrastructure</span>
-            </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Robust, scalable infrastructure that ensures reliable performance for events of any size, anywhere in the
-              world.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
-            {infrastructureStats.map((stat, index) => (
-              <div key={stat.label} className="text-center group hover:scale-105 transition-transform duration-300">
-                <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20 mb-4 group-hover:bg-white/20 transition-colors">
-                  <stat.icon className="text-red-500 mx-auto mb-4" size={32} />
-                  <div className="text-3xl font-bold text-white mb-2">{stat.value}</div>
-                  <div className="text-sm text-gray-300">{stat.label}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Infrastructure Features */}
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
-              <div className="bg-blue-600 p-3 rounded-2xl w-fit mb-4">
-                <Globe className="text-white" size={24} />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Global CDN</h3>
-              <p className="text-gray-300 text-sm">
-                Worldwide content delivery network ensuring fast, reliable access from any location with 150+ edge
-                nodes.
-              </p>
-            </div>
-
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
-              <div className="bg-green-600 p-3 rounded-2xl w-fit mb-4">
-                <Shield className="text-white" size={24} />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Security First</h3>
-              <p className="text-gray-300 text-sm">
-                Enterprise-grade security with SOC 2 compliance, end-to-end encryption, and comprehensive audit trails.
-              </p>
-            </div>
-
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
-              <div className="bg-purple-600 p-3 rounded-2xl w-fit mb-4">
-                <TrendingUp className="text-white" size={24} />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Auto-Scaling</h3>
-              <p className="text-gray-300 text-sm">
-                Intelligent auto-scaling infrastructure that adapts to demand, ensuring optimal performance during peak
-                usage.
-              </p>
-            </div>
+            <Button asChild className="bg-red-600 hover:bg-red-700 text-white rounded-full px-8 py-3">
+              <Link href="/contact">Get Format Recommendations</Link>
+            </Button>
           </div>
         </div>
       </section>
 
-      {/* Innovation Areas */}
+      {/* Industry-Specific Events */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-purple-100 text-purple-600 text-sm font-medium mb-6">
-              <Target className="w-4 h-4 mr-2" />
-              Future Innovation
+              <Briefcase className="w-4 h-4 mr-2" />
+              Industry Expertise
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Next-Generation <span className="text-red-600">Event Technology</span>
+              Industry-Specific <span className="text-red-600">Events</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Pioneering the future of events with cutting-edge technologies like AI, blockchain, IoT, and immersive
-              experiences.
+              We understand the unique requirements and expectations of different industries, allowing us to deliver
+              tailored event experiences.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {innovationAreas.map((area, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {industrySpecificEvents.map((industry, index) => (
               <div
-                key={area.title}
-                className="group bg-gradient-to-br from-gray-50 to-white p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100"
+                key={industry.industry}
+                className="bg-white rounded-3xl shadow-lg border border-gray-100 hover:shadow-xl hover:border-red-200 transition-all duration-300 p-8"
               >
-                <div className="flex items-start space-x-6">
-                  <div className="bg-gradient-to-r from-red-100 to-red-50 p-4 rounded-2xl group-hover:from-red-200 group-hover:to-red-100 transition-colors">
-                    <area.icon className="text-red-600" size={32} />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-3">{area.title}</h3>
-                    <p className="text-gray-600 mb-6">{area.description}</p>
-                    <div className="grid grid-cols-2 gap-3">
-                      {area.features.map((feature, featureIndex) => (
-                        <div key={featureIndex} className="flex items-center text-sm text-gray-600">
-                          <CheckCircle className="w-4 h-4 text-red-500 mr-2 flex-shrink-0" />
-                          {feature}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+                <div className={`bg-gradient-to-r ${industry.bgColor} p-4 rounded-2xl w-fit mb-6`}>
+                  <industry.icon className="text-gray-700" size={32} />
                 </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">{industry.industry}</h3>
+                <ul className="space-y-2">
+                  {industry.events.map((event, eventIndex) => (
+                    <li key={eventIndex} className="flex items-center space-x-3">
+                      <div
+                        className={`w-2 h-2 bg-${industry.color.split("-")[1].split(" ")[0]}-600 rounded-full`}
+                      ></div>
+                      <span className="text-gray-600">{event}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Global Capabilities */}
-      <section className="py-24 bg-gradient-to-br from-gray-50 to-white">
+      {/* Enhanced Event Experiences */}
+      <section className="py-24 bg-gradient-to-br from-gray-900 to-black text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-red-100 text-red-600 text-sm font-medium mb-6">
-              <Globe className="w-4 h-4 mr-2" />
-              Global Reach
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 text-white text-sm font-medium mb-6">
+              <Award className="w-4 h-4 mr-2" />
+              Enhanced Experiences
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Worldwide <span className="text-red-600">Event Capabilities</span>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              Elevate Your <span className="text-red-500">Event Experience</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              International expertise and local knowledge to deliver successful events worldwide with multi-language
-              support and cultural adaptation.
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Add specialized experiences to any event type to create memorable moments and enhance engagement.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div className="space-y-8">
-              <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                  <Globe className="text-red-600 mr-3" size={24} />
-                  Multi-Language Support
-                </h3>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                    <span className="text-gray-600">Real-time translation</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                    <span className="text-gray-600">Multilingual platforms</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                    <span className="text-gray-600">Cultural adaptation</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                    <span className="text-gray-600">Local compliance</span>
-                  </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {eventExperiences.map((experience, index) => (
+              <div
+                key={experience.title}
+                className="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all duration-300"
+              >
+                <div className="bg-red-600 p-4 rounded-2xl w-fit mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <experience.icon className="text-white" size={24} />
                 </div>
+                <h3 className="text-xl font-bold text-white mb-3">{experience.title}</h3>
+                <p className="text-gray-300">{experience.description}</p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-              <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                  <Clock className="text-red-600 mr-3" size={24} />
-                  Time Zone Management
-                </h3>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                    <span className="text-gray-600">Global scheduling</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                    <span className="text-gray-600">Multi-timezone events</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                    <span className="text-gray-600">Regional customization</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                    <span className="text-gray-600">24/7 global support</span>
-                  </div>
-                </div>
-              </div>
+      {/* Event Planning Process */}
+      <section className="py-24 bg-gradient-to-br from-gray-50 to-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-red-100 text-red-600 text-sm font-medium mb-6 animate-pulse">
+              <Calendar className="w-4 h-4 mr-2" />
+              Our Process
             </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Your Journey to an <span className="text-red-600">Exceptional Event</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              We've refined our process to ensure every event is meticulously planned and flawlessly executed.
+            </p>
+          </div>
 
-            <div className="relative">
-              <Image
-                src="/images/trade-show.jpg"
-                alt="Global Event Capabilities"
-                width={600}
-                height={500}
-                className="rounded-3xl shadow-2xl object-cover w-full h-full"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-3xl"></div>
-
-              {/* Floating Global Stats */}
-              <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-6 border border-gray-100">
-                <div className="flex items-center space-x-4">
-                  <div className="bg-blue-100 p-3 rounded-xl">
-                    <Globe className="text-blue-600" size={24} />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              {
+                step: "01",
+                title: "Discovery & Objectives",
+                description: "Understanding your goals, audience, and vision",
+                icon: Target,
+                gradient: "from-blue-500 to-blue-600",
+                bgGradient: "from-blue-50 to-blue-100",
+              },
+              {
+                step: "02",
+                title: "Strategic Planning",
+                description: "Creating a comprehensive event strategy and timeline",
+                icon: Lightbulb,
+                gradient: "from-purple-500 to-purple-600",
+                bgGradient: "from-purple-50 to-purple-100",
+              },
+              {
+                step: "03",
+                title: "Execution & Management",
+                description: "Delivering a flawless event experience",
+                icon: Calendar,
+                gradient: "from-red-500 to-red-600",
+                bgGradient: "from-red-50 to-red-100",
+              },
+              {
+                step: "04",
+                title: "Analysis & Follow-up",
+                description: "Measuring success and planning future improvements",
+                icon: BarChart3,
+                gradient: "from-green-500 to-green-600",
+                bgGradient: "from-green-50 to-green-100",
+              },
+            ].map((item) => (
+              <div
+                key={item.step}
+                className="group relative bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden"
+              >
+                {/* Top Gradient Bar */}
+                <div className={`h-2 bg-gradient-to-r ${item.gradient}`}></div>
+                
+                <div className="p-8">
+                  {/* Icon and Step Number */}
+                  <div className="flex items-center justify-between mb-6">
+                    <div className={`bg-gradient-to-r ${item.bgGradient} p-4 rounded-2xl group-hover:scale-110 transition-transform duration-300`}>
+                      <item.icon className={`text-${item.gradient.split("-")[1].split(" ")[0]}-600`} size={24} />
+                    </div>
+                    <span className={`text-3xl font-bold bg-gradient-to-r ${item.gradient} bg-clip-text text-transparent`}>
+                      {item.step}
+                    </span>
                   </div>
+
+                  {/* Content */}
                   <div>
-                    <div className="text-2xl font-bold text-gray-900">50+</div>
-                    <div className="text-sm text-gray-600">Countries Served</div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
+                    <p className="text-gray-600">{item.description}</p>
                   </div>
+
+                  {/* Hover Indicator */}
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-transparent to-transparent group-hover:bg-gradient-to-r group-hover:from-transparent group-hover:via-red-500 group-hover:to-transparent transition-all duration-300"></div>
                 </div>
               </div>
-            </div>
+            ))}
+          </div>
+
+          {/* Additional Features */}
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Real-time Updates",
+                description: "Stay informed with live progress tracking",
+                icon: Zap,
+              },
+              {
+                title: "Dedicated Support",
+                description: "Expert assistance throughout the process",
+                icon: MessageSquare,
+              },
+              {
+                title: "Flexible Adaptation",
+                description: "Quick adjustments to changing requirements",
+                icon: Target,
+              },
+            ].map((feature) => (
+              <div key={feature.title} className="flex items-start space-x-4">
+                <div className="bg-red-100 p-3 rounded-xl">
+                  <feature.icon className="text-red-600" size={20} />
+                </div>
+                <div>
+                  <h4 className="text-lg font-semibold text-gray-900">{feature.title}</h4>
+                  <p className="text-gray-600">{feature.description}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -660,10 +693,10 @@ export default function CapabilitiesPage() {
       <section className="py-24 bg-gradient-to-r from-red-600 to-red-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Experience Our Technology</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Find the Perfect Event Format</h2>
             <p className="text-xl text-red-100 mb-12">
-              Discover how our advanced capabilities and cutting-edge technology can transform your next event into an
-              exceptional experience that delivers measurable results.
+              Let our experts help you determine the ideal event type and format to achieve your specific objectives and
+              engage your target audience.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center">
@@ -672,34 +705,41 @@ export default function CapabilitiesPage() {
                 size="lg"
                 className="bg-white text-red-600 hover:bg-gray-100 rounded-full px-8 py-6 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
               >
-                <Link href="/contact">Schedule a Demo</Link>
+                <Link href="/contact">
+                  <UserPlus className="mr-2" size={20} />
+                  Schedule a Consultation
+                </Link>
               </Button>
               <Button
                 asChild
                 size="lg"
-                className="bg-white text-red-600 hover:bg-gray-100 rounded-full px-8 py-6 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+                variant="outline"
+                className="border-2 border-white text-white hover:bg-white hover:text-red-600 rounded-full px-8 py-6 text-lg font-semibold transition-all duration-300"
               >
-                <Link href="/services">View Our Services</Link>
+                <Link href="/services">
+                  <MessageSquare className="mr-2" size={20} />
+                  Speak With an Expert
+                </Link>
               </Button>
             </div>
 
-            {/* Tech Trust Indicators */}
+            {/* Trust Indicators */}
             <div className="mt-16 flex flex-wrap justify-center items-center gap-8 opacity-80">
               <div className="text-center">
-                <div className="text-2xl font-bold text-white">SOC 2</div>
-                <div className="text-red-200 text-sm">Certified</div>
+                <div className="text-2xl font-bold text-white">500+</div>
+                <div className="text-red-200 text-sm">Events Delivered</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-white">99.9%</div>
-                <div className="text-red-200 text-sm">Uptime</div>
+                <div className="text-2xl font-bold text-white">98%</div>
+                <div className="text-red-200 text-sm">Client Satisfaction</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-white">150+</div>
-                <div className="text-red-200 text-sm">CDN Nodes</div>
+                <div className="text-2xl font-bold text-white">12+</div>
+                <div className="text-red-200 text-sm">Industries Served</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-white">100K+</div>
-                <div className="text-red-200 text-sm">Concurrent Users</div>
+                <div className="text-2xl font-bold text-white">Global</div>
+                <div className="text-red-200 text-sm">Reach</div>
               </div>
             </div>
           </div>

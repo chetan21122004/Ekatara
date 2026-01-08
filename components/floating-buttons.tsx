@@ -8,30 +8,13 @@ export function FloatingButtons() {
       <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
         {/* Main Buttons - Visible on all devices */}
         <div className="group">
-          {/* Call-to-action buttons that appear on hover/tap (visible on hover on desktop, tap on mobile) */}
-          <div className="absolute bottom-full right-0 mb-3 flex flex-col gap-3 opacity-0 scale-95 transform transition-all duration-300 group-hover:opacity-100 group-hover:scale-100 origin-bottom-right">
-            <Link 
-              href="/contact" 
-              className="bg-white text-red-600 hover:bg-red-50 px-4 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 border border-red-100 whitespace-nowrap"
-            >
-              <Target className="h-4 w-4" />
-              <span>Plan Scientific Event</span>
-            </Link>
-            
-            <Link 
-              href="/technology" 
-              className="bg-white text-red-600 hover:bg-red-50 px-4 py-3 rounded-full text-sm font-medium shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 border border-red-100 whitespace-nowrap"
-            >
-              <Lightbulb className="h-4 w-4" />
-              <span>Request a Demo</span>
-            </Link>
-          </div>
+        
           
           {/* Chat buttons */}
           <div className="flex  flex-col items-center gap-3">
             {/* WhatsApp */}
             <a 
-              href="https://wa.me/+919999999999" 
+              href="https://wa.me/+919370172365" 
               target="_blank" 
               rel="noopener noreferrer"
               className="bg-gradient-to-br from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center z-10"
@@ -42,18 +25,12 @@ export function FloatingButtons() {
               </svg>
             </a>
             
-            {/* Live Chat - Main button that also serves as toggle */}
-            <button 
-              className="bg-gradient-to-br from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group-hover:scale-105"
-              aria-label="Contact Us"
-            >
-              <MessageCircle className="w-5 h-5" />
-            </button>
+          
             
             {/* Quick call button */}
             <a 
-              href="tel:+919999999999" 
-              className="bg-gradient-to-br from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center opacity-0 scale-0 group-hover:opacity-100 group-hover:scale-100 origin-center"
+              href="tel:+919370172365" 
+              className="bg-gradient-to-br from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center"
               aria-label="Call Us"
             >
               <Phone className="w-5 h-5" />

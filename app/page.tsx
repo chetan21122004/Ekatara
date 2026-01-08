@@ -362,9 +362,6 @@ export default function HomePage() {
                     Real-time technical support
                   </li>
                 </ul>
-                <Button variant="outline" className="w-full rounded-full border-red-200 text-red-600 hover:bg-red-50 hover-scale">
-                  Learn More
-                </Button>
               </div>
             </div>
 
@@ -404,9 +401,6 @@ export default function HomePage() {
                     Cross-platform networking
                   </li>
                 </ul>
-                <Button variant="outline" className="w-full rounded-full border-red-200 text-red-600 hover:bg-red-50 hover-scale">
-                  Learn More
-                </Button>
               </div>
             </div>
 
@@ -446,9 +440,6 @@ export default function HomePage() {
                     Virtual networking rooms
                   </li>
                 </ul>
-                <Button variant="outline" className="w-full rounded-full border-red-200 text-red-600 hover:bg-red-50 hover-scale">
-                  Learn More
-                </Button>
               </div>
             </div>
           </div>

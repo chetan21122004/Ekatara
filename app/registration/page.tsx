@@ -21,8 +21,6 @@ import {
   Brain,
   Timer,
   BadgeCheck,
-  ChevronRight,
-  Play,
   MessageSquare,
   FileText,
   Calendar,
@@ -388,16 +386,6 @@ export default function RegistrationPage() {
                     Choose Your Experience
                   </Link>
                 </Button>
-                <Button
-                  asChild
-                  variant="outline"
-                  className="border-2 border-red-200 text-red-600 hover:bg-red-50 rounded-full px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
-                >
-                  <Link href="#demo">
-                    <Play className="mr-2" size={20} />
-                    Watch Preview
-                  </Link>
-                </Button>
               </div>
             </div>
 
@@ -566,7 +554,7 @@ export default function RegistrationPage() {
                     </div>
                   </div>
 
-                  <div className="space-y-4 mb-8">
+                  <div className="space-y-4">
                     {tier.features.map((feature, featureIndex) => (
                       <div key={featureIndex} className="flex items-center space-x-3">
                         <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
@@ -574,19 +562,6 @@ export default function RegistrationPage() {
                       </div>
                     ))}
                   </div>
-
-                  <Button
-                    className={`w-full ${
-                      selectedPlan === tier.name
-                        ? "bg-red-600 hover:bg-red-700 text-white"
-                        : tier.popular
-                          ? "bg-red-600 hover:bg-red-700 text-white"
-                          : `bg-gradient-to-r ${tier.color} text-white hover:opacity-90`
-                    } rounded-full py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300`}
-                  >
-                    {selectedPlan === tier.name ? "Selected" : "Select Package"}
-                    <ChevronRight className="ml-2" size={20} />
-                  </Button>
                 </div>
               </div>
             ))}
@@ -624,13 +599,7 @@ export default function RegistrationPage() {
                     <div className="text-sm opacity-90">Additional Savings</div>
                   </div>
                 </div>
-                <p className="text-xl text-gray-600 mb-6">{tab.description}</p>
-                <Button
-                  className={`bg-gradient-to-r ${tab.color} text-white hover:opacity-90 rounded-full px-8 py-3 font-semibold shadow-lg hover:shadow-xl transition-all duration-300`}
-                >
-                  Apply This Discount
-                  <ArrowRight className="ml-2" size={16} />
-                </Button>
+                <p className="text-xl text-gray-600">{tab.description}</p>
               </div>
             ))}
           </div>
@@ -680,13 +649,8 @@ export default function RegistrationPage() {
                   ))}
                 </div>
 
-                <div className="flex items-center justify-between">
+                <div className="flex items-center">
                   <div className="text-2xl font-bold text-white">{service.price}</div>
-                  <Button
-                    className={`bg-gradient-to-r ${service.color} text-white hover:opacity-90 rounded-full px-6 py-2 font-semibold shadow-lg hover:shadow-xl transition-all duration-300`}
-                  >
-                    Add Service
-                  </Button>
                 </div>
               </div>
             ))}
@@ -705,16 +669,6 @@ export default function RegistrationPage() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
-              <Button
-                asChild
-                size="lg"
-                className="bg-white text-purple-600 hover:bg-gray-100 rounded-full px-12 py-6 text-xl font-semibold shadow-2xl hover:shadow-3xl transition-all duration-300 transform hover:scale-105"
-              >
-                <Link href="#register">
-                  <Rocket className="mr-3" size={24} />
-                  Register Now - Save 25%
-                </Link>
-              </Button>
               <Button
                 asChild
                 size="lg"

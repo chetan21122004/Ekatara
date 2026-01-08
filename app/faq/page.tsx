@@ -1,710 +1,639 @@
-import Image from "next/image"
-import {
-  Smartphone,
-  BarChart3,
-  Users,
-  Globe,
-  Zap,
-  Shield,
-  Camera,
-  Headphones,
-  Calendar,
-  CreditCard,
-  FileText,
-  Settings,
-  CheckCircle,
-  ArrowRight,
-  Lightbulb,
-  Target,
-  TrendingUp,
-  Lock,
-  Wifi,
-  Monitor,
-  Database,
-  Cloud,
-  Cpu,
-  Clock,
-} from "lucide-react"
+"use client"
+import { useState, useEffect } from "react"
+import type React from "react"
+
+import { ChevronDown, HelpCircle, Search, TrendingUp, CheckCircle, Clock, MessageSquare, X } from "lucide-react"
+import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import Link from "next/link"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Badge } from "@/components/ui/badge"
+import { motion, AnimatePresence } from "framer-motion"
 
-export default function CapabilitiesPage() {
-  const technologyCapabilities = [
+export default function FAQPage() {
+  const [openItems, setOpenItems] = useState<number[]>([])
+  const [searchTerm, setSearchTerm] = useState("")
+  const [activeCategory, setActiveCategory] = useState("all")
+  const [searchResults, setSearchResults] = useState<{
+    count: number
+    categories: { [key: string]: number }
+  }>({ count: 0, categories: {} })
+  const [recentSearches, setRecentSearches] = useState<string[]>([])
+
+  // Popular questions that will always be highlighted
+  const popularQuestionIds = [0, 100, 200, 300]
+
+  const faqCategories = [
     {
-      icon: Smartphone,
-      title: "Mobile Event Apps",
-      description:
-        "Custom mobile applications with networking features, agenda management, and real-time notifications.",
-      features: [
-        "Native iOS & Android apps",
-        "Real-time push notifications",
-        "Interactive networking",
-        "Offline functionality",
-        "Custom branding",
-        "Multi-language support",
+      id: "registration",
+      title: "Event Registration",
+      icon: <CheckCircle className="text-emerald-500" size={20} />,
+      faqs: [
+        {
+          question: "How do I register for an event?",
+          answer:
+            "Registration is completed through our secure external platform. Simply visit the event page, click 'Register Now', create an account or log in, select your registration type, and complete the payment process. You'll receive a confirmation email immediately after successful registration.",
+          tags: ["registration", "process", "account"],
+        },
+        {
+          question: "Can I register multiple attendees at once?",
+          answer:
+            "Yes! We offer group registration for 3 or more attendees from the same organization. Contact our registration team to receive a custom group registration form and take advantage of group discounts ranging from 10-20% depending on the number of attendees.",
+          tags: ["registration", "group", "discount"],
+        },
+        {
+          question: "What payment methods do you accept?",
+          answer:
+            "We accept major credit/debit cards (Visa, Mastercard, American Express), PayPal, bank transfers, and can provide invoices for institutional payments. All transactions are processed through our secure payment gateway with encryption.",
+          tags: ["payment", "methods", "security"],
+        },
+        {
+          question: "Can I transfer my registration to someone else?",
+          answer:
+            "Yes, registration transfers to another person from the same organization are allowed at no additional cost. Please contact our support team at least 48 hours before the event to process the transfer.",
+          tags: ["registration", "transfer", "changes"],
+        },
       ],
-      color: "from-blue-500 to-blue-600",
-      bgColor: "from-blue-50 to-blue-100",
     },
     {
-      icon: BarChart3,
-      title: "Real-time Analytics",
-      description: "Live event dashboards with attendance tracking, engagement metrics, and performance indicators.",
-      features: [
-        "Live attendance tracking",
-        "Engagement heatmaps",
-        "Session analytics",
-        "ROI measurement",
-        "Custom reporting",
-        "Predictive insights",
+      id: "abstract",
+      title: "Abstract Submission",
+      icon: <MessageSquare className="text-blue-500" size={20} />,
+      faqs: [
+        {
+          question: "What are the abstract submission requirements?",
+          answer:
+            "Abstracts must be 250-300 words (excluding title, authors, and affiliations), formatted in Arial or Times New Roman 12pt font, single-spaced. Required sections include: title, authors, background, methods, results, conclusions, and 3-5 keywords. Submit as .docx or PDF format.",
+          tags: ["abstract", "requirements", "format"],
+        },
+        {
+          question: "When is the abstract submission deadline?",
+          answer:
+            "The abstract submission deadline is June 15, 2025. Review notifications will be sent by July 30, 2025. Accepted presenters must register for the event by August 15, 2025, to secure their presentation slot.",
+          tags: ["abstract", "deadline", "dates"],
+        },
+        {
+          question: "Can I submit multiple abstracts?",
+          answer:
+            "Yes, you can submit multiple abstracts, but each submission requires a separate submission form. Please ensure each abstract meets all formatting requirements and is submitted before the deadline.",
+          tags: ["abstract", "multiple", "submission"],
+        },
+        {
+          question: "What happens after I submit my abstract?",
+          answer:
+            "After submission, you'll receive an immediate confirmation email with your submission ID. Your abstract will be reviewed by our scientific committee within 4-6 weeks. You'll be notified of acceptance, revision requests, or rejection via email.",
+          tags: ["abstract", "review", "process"],
+        },
       ],
-      color: "from-green-500 to-green-600",
-      bgColor: "from-green-50 to-green-100",
     },
     {
-      icon: Globe,
-      title: "Virtual Event Platforms",
-      description:
-        "Comprehensive virtual and hybrid event solutions with interactive features and global accessibility.",
-      features: [
-        "Custom virtual environments",
-        "HD video streaming",
-        "Interactive breakout rooms",
-        "Virtual networking",
-        "Global CDN delivery",
-        "Multi-timezone support",
+      id: "payment",
+      title: "Payment & Billing",
+      icon: <Clock className="text-amber-500" size={20} />,
+      faqs: [
+        {
+          question: "What are the early bird discount rates?",
+          answer:
+            "Early bird registration (until March 15, 2025) offers 20% off standard rates. Standard registration runs from March 16 - July 31, 2025. Late registration (August 1 onwards) includes a 10% surcharge. Group discounts can be combined with early bird rates.",
+          tags: ["payment", "discount", "early-bird"],
+        },
+        {
+          question: "What is your cancellation policy?",
+          answer:
+            "Cancellations 60+ days before the event receive a full refund minus $50 processing fee. Cancellations 30-59 days before receive 50% refund. Cancellations less than 30 days receive no refund, but registration can be transferred to another person.",
+          tags: ["payment", "cancellation", "refund"],
+        },
+        {
+          question: "Can I get an invoice for my registration?",
+          answer:
+            "Yes, we provide detailed invoices for institutional payments and expense reporting. Invoices include complete billing information, tax calculations where applicable, and payment terms of Net 30 days. Contact our finance team to request an invoice.",
+          tags: ["payment", "invoice", "billing"],
+        },
+        {
+          question: "Are there student discounts available?",
+          answer:
+            "Yes, students receive 50% off standard registration rates. Valid student ID or enrollment verification is required during registration. This discount can be combined with early bird rates for additional savings.",
+          tags: ["payment", "discount", "student"],
+        },
       ],
-      color: "from-purple-500 to-purple-600",
-      bgColor: "from-purple-50 to-purple-100",
     },
     {
-      icon: Zap,
-      title: "Lead Capture Systems",
-      description:
-        "Advanced lead generation tools with QR code scanning, business card exchange, and automated follow-up.",
-      features: [
-        "QR code lead capture",
-        "Digital business cards",
-        "CRM integration",
-        "Automated follow-up",
-        "Lead scoring",
-        "Export capabilities",
+      id: "logistics",
+      title: "Event Logistics",
+      icon: <TrendingUp className="text-purple-500" size={20} />,
+      faqs: [
+        {
+          question: "What is included in my registration?",
+          answer:
+            "Standard registration includes full event access, conference materials, lunch and refreshments, networking reception, and digital proceedings. Premium registration adds VIP seating, exclusive workshops, speaker dinner access, and 1-year digital library access.",
+          tags: ["logistics", "inclusions", "benefits"],
+        },
+        {
+          question: "Will the event be recorded?",
+          answer:
+            "Yes, most sessions are recorded and made available to registered attendees through our digital platform. Recordings are typically available within 48 hours after the event and remain accessible for 12 months.",
+          tags: ["logistics", "recordings", "access"],
+        },
+        {
+          question: "What COVID-19 safety measures are in place?",
+          answer:
+            "We follow all local health guidelines and regulations. This may include vaccination requirements, mask mandates, social distancing measures, and enhanced sanitization protocols. Specific requirements will be communicated to registered attendees before the event.",
+          tags: ["logistics", "safety", "covid"],
+        },
+        {
+          question: "Is there parking available at the venue?",
+          answer:
+            "Parking availability varies by venue. Detailed venue information including parking options, public transportation, and local accommodations will be provided in your pre-event information package sent 2 weeks before the event.",
+          tags: ["logistics", "venue", "parking"],
+        },
       ],
-      color: "from-orange-500 to-orange-600",
-      bgColor: "from-orange-50 to-orange-100",
     },
     {
-      icon: Shield,
-      title: "Security & Compliance",
-      description: "Enterprise-grade security measures, GDPR compliance, and data protection protocols.",
-      features: [
-        "GDPR compliance",
-        "End-to-end encryption",
-        "SOC 2 certification",
-        "Data anonymization",
-        "Audit trails",
-        "Privacy controls",
+      id: "technical",
+      title: "Technical Support",
+      icon: <HelpCircle className="text-red-500" size={20} />,
+      faqs: [
+        {
+          question: "How do I access virtual or hybrid event features?",
+          answer:
+            "Virtual and hybrid event access details are provided in your confirmation email and pre-event information package. You'll receive login credentials, platform instructions, and technical requirements. A test session is usually available 24 hours before the event.",
+          tags: ["technical", "virtual", "access"],
+        },
+        {
+          question: "What are the technical requirements for virtual attendance?",
+          answer:
+            "You'll need a stable internet connection (minimum 5 Mbps), updated web browser (Chrome, Firefox, Safari, or Edge), and audio/video capabilities. Mobile apps are available for iOS and Android. Detailed technical requirements are provided upon registration.",
+          tags: ["technical", "requirements", "virtual"],
+        },
+        {
+          question: "Who do I contact for technical issues during the event?",
+          answer:
+            "Our technical support team is available 24/7 during events. Contact information is provided in your event materials. You can reach support via live chat, phone, or email. Response times are typically within 15 minutes during event hours.",
+          tags: ["technical", "support", "contact"],
+        },
+        {
+          question: "Can I download presentation materials?",
+          answer:
+            "Yes, presentation materials are available for download through our event platform. Materials are typically uploaded 24-48 hours after each session and remain available for 12 months. Some presenters may restrict downloads based on their preferences.",
+          tags: ["technical", "downloads", "materials"],
+        },
       ],
-      color: "from-red-500 to-red-600",
-      bgColor: "from-red-50 to-red-100",
-    },
-    {
-      icon: Camera,
-      title: "Live Streaming & Production",
-      description:
-        "Professional broadcasting capabilities with multi-camera setups, interactive features, and global reach.",
-      features: [
-        "Multi-camera production",
-        "4K streaming quality",
-        "Interactive overlays",
-        "Global distribution",
-        "Recording & playback",
-        "Social media integration",
-      ],
-      color: "from-indigo-500 to-indigo-600",
-      bgColor: "from-indigo-50 to-indigo-100",
     },
   ]
 
-  const platformFeatures = [
-    {
-      category: "Registration & Management",
-      icon: Users,
-      capabilities: [
-        {
-          title: "Custom Registration Forms",
-          description: "Tailored registration workflows with conditional logic and custom fields",
-          icon: FileText,
-        },
-        {
-          title: "Payment Processing",
-          description: "Secure payment gateways with multiple currency support",
-          icon: CreditCard,
-        },
-        {
-          title: "Automated Communications",
-          description: "Email sequences, confirmations, and reminder systems",
-          icon: Headphones,
-        },
-        {
-          title: "Attendee Management",
-          description: "Complete attendee lifecycle management and tracking",
-          icon: Users,
-        },
-      ],
-    },
-    {
-      category: "Event Operations",
-      icon: Settings,
-      capabilities: [
-        {
-          title: "Agenda Management",
-          description: "Dynamic scheduling with speaker coordination and room management",
-          icon: Calendar,
-        },
-        {
-          title: "Technical Support",
-          description: "24/7 technical assistance and troubleshooting during events",
-          icon: Headphones,
-        },
-        {
-          title: "Integration Hub",
-          description: "Seamless integration with CRM, marketing, and business systems",
-          icon: Settings,
-        },
-        {
-          title: "Real-time Monitoring",
-          description: "Live event monitoring with instant issue detection and resolution",
-          icon: Monitor,
-        },
-      ],
-    },
-  ]
+  // Calculate search results when search term changes
+  useEffect(() => {
+    if (searchTerm.trim() === "") {
+      setSearchResults({ count: 0, categories: {} })
+      return
+    }
 
-  const infrastructureStats = [
-    { label: "Global CDN Nodes", value: "150+", icon: Globe },
-    { label: "Concurrent Users", value: "100K+", icon: Users },
-    { label: "Uptime Guarantee", value: "99.9%", icon: TrendingUp },
-    { label: "Data Centers", value: "12", icon: Database },
-    { label: "Security Certifications", value: "5", icon: Shield },
-    { label: "API Endpoints", value: "200+", icon: Cpu },
-  ]
+    const results: { count: number; categories: { [key: string]: number } } = {
+      count: 0,
+      categories: {},
+    }
 
-  const innovationAreas = [
-    {
-      title: "AI-Powered Insights",
-      description: "Machine learning algorithms for attendee behavior analysis and event optimization",
-      icon: Lightbulb,
-      features: ["Predictive analytics", "Behavior tracking", "Recommendation engine", "Smart scheduling"],
-    },
-    {
-      title: "Blockchain Integration",
-      description: "Secure, transparent credentialing and certificate management using blockchain technology",
-      icon: Lock,
-      features: ["Digital certificates", "Secure verification", "Immutable records", "Smart contracts"],
-    },
-    {
-      title: "IoT Event Solutions",
-      description: "Internet of Things integration for smart venues and enhanced attendee experiences",
-      icon: Wifi,
-      features: ["Smart badges", "Environmental monitoring", "Crowd flow analysis", "Automated check-ins"],
-    },
-    {
-      title: "AR/VR Experiences",
-      description: "Augmented and virtual reality solutions for immersive event experiences",
-      icon: Monitor,
-      features: ["Virtual venues", "AR networking", "3D presentations", "Immersive demos"],
-    },
-  ]
+    faqCategories.forEach((category) => {
+      const matchingFaqs = category.faqs.filter(
+        (faq) =>
+          faq.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          faq.answer.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          faq.tags.some((tag) => tag.toLowerCase().includes(searchTerm.toLowerCase())),
+      )
+
+      if (matchingFaqs.length > 0) {
+        results.count += matchingFaqs.length
+        results.categories[category.id] = matchingFaqs.length
+      }
+    })
+
+    setSearchResults(results)
+  }, [searchTerm])
+
+  // Add search term to recent searches when user submits search
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (searchTerm.trim() !== "" && !recentSearches.includes(searchTerm.trim())) {
+      setRecentSearches((prev) => [searchTerm.trim(), ...prev.slice(0, 4)])
+    }
+  }
+
+  // Clear search term
+  const clearSearch = () => {
+    setSearchTerm("")
+  }
+
+  // Apply recent search
+  const applyRecentSearch = (term: string) => {
+    setSearchTerm(term)
+  }
+
+  // Remove recent search
+  const removeRecentSearch = (term: string) => {
+    setRecentSearches((prev) => prev.filter((item) => item !== term))
+  }
+
+  // Toggle FAQ item
+  const toggleItem = (index: number) => {
+    setOpenItems((prev) => (prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]))
+  }
+
+  // Filter FAQs based on search term and active category
+  const filteredFAQs = faqCategories
+    .filter((category) => activeCategory === "all" || category.id === activeCategory)
+    .map((category) => ({
+      ...category,
+      faqs: category.faqs.filter(
+        (faq) =>
+          searchTerm.trim() === "" ||
+          faq.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          faq.answer.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          faq.tags.some((tag) => tag.toLowerCase().includes(searchTerm.toLowerCase())),
+      ),
+    }))
+    .filter((category) => category.faqs.length > 0)
 
   return (
-    <div className="min-h-screen pt-20">
-      {/* Hero Section */}
-      <section className="relative py-24 bg-gradient-to-br from-red-50 via-white to-gray-50 overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%23dc2626' fillOpacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-            }}
-          ></div>
-        </div>
+    <div className="min-h-screen py-20 bg-gradient-to-b from-white to-gray-50">
+      <div className="max-w-5xl mx-auto px-4 mt-3 sm:px-6 lg:px-8">
+        {/* Hero Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16"
+        >
+          <div className="inline-block mb-4 bg-red-50 p-3 rounded-full">
+            <HelpCircle className="text-red-600 h-8 w-8" />
+          </div>
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            Frequently Asked{" "}
+            <span className="bg-gradient-to-r from-red-600 to-red-400 bg-clip-text text-transparent">Questions</span>
+          </h1>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Find answers to common questions about our events, registration process, and services. Can't find what
+            you're looking for? Contact our support team.
+          </p>
+        </motion.div>
 
-        {/* Floating Tech Elements */}
-        <div className="absolute top-20 left-10 w-20 h-20 bg-blue-100 rounded-full opacity-60 animate-pulse"></div>
-        <div className="absolute top-40 right-20 w-16 h-16 bg-purple-200 rounded-full opacity-40 animate-bounce"></div>
-        <div className="absolute bottom-40 left-20 w-12 h-12 bg-green-300 rounded-full opacity-50 animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-24 h-24 bg-orange-100 rounded-full opacity-30 animate-bounce"></div>
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            {/* Left Content */}
-            <div>
-              <div className="mb-8">
-                <span className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-red-100 to-red-50 border border-red-200 text-red-700 text-sm font-semibold">
-                  <Cpu className="w-4 h-4 mr-2" />
-                  Advanced Technology
-                </span>
-              </div>
-
-              <h1 className="text-5xl md:text-6xl font-bold mb-8 leading-tight">
-                <span className="text-gray-900">Cutting-Edge</span>
-                <br />
-                <span className="bg-gradient-to-r from-red-600 to-red-700 bg-clip-text text-transparent">
-                  Event Technology
-                </span>
-                <br />
-                <span className="text-gray-700 text-4xl md:text-5xl">& Innovation</span>
-              </h1>
-
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                Advanced event management tools and technologies that enable us to deliver exceptional experiences and
-                measurable results for every event, powered by enterprise-grade infrastructure.
-              </p>
-
-              <div className="grid grid-cols-2 gap-4 mb-8">
-                <div className="text-center p-4 bg-white rounded-2xl shadow-lg border border-gray-100">
-                  <div className="text-2xl font-bold text-blue-600 mb-1">AI</div>
-                  <div className="text-xs text-gray-600">Powered</div>
-                </div>
-                <div className="text-center p-4 bg-white rounded-2xl shadow-lg border border-gray-100">
-                  <div className="text-2xl font-bold text-green-600 mb-1">Cloud</div>
-                  <div className="text-xs text-gray-600">Native</div>
-                </div>
-                <div className="text-center p-4 bg-white rounded-2xl shadow-lg border border-gray-100">
-                  <div className="text-2xl font-bold text-purple-600 mb-1">Global</div>
-                  <div className="text-xs text-gray-600">Scale</div>
-                </div>
-                <div className="text-center p-4 bg-white rounded-2xl shadow-lg border border-gray-100">
-                  <div className="text-2xl font-bold text-red-600 mb-1">Secure</div>
-                  <div className="text-xs text-gray-600">Enterprise</div>
-                </div>
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild className="bg-red-600 hover:bg-red-700 text-white rounded-full px-8 py-3">
-                  <Link href="/contact">
-                    Schedule Demo
-                    <ArrowRight className="ml-2" size={16} />
-                  </Link>
-                </Button>
-                <Button  
-                  asChild
-                  variant="outline"
-                  className="border-red-200 text-red-600 hover:bg-red-50 rounded-full px-8 py-3"
+        {/* Search Bar */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="mb-12"
+        >
+          <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+            <form onSubmit={handleSearch} className="relative max-w-3xl mx-auto">
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+              <Input
+                type="text"
+                placeholder="Search frequently asked questions..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-12 pr-12 py-6 rounded-xl border-gray-200 focus:border-red-600 focus:ring-red-600 text-lg shadow-sm"
+              />
+              {searchTerm && (
+                <button
+                  type="button"
+                  onClick={clearSearch}
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
                 >
-                  <Link href="/services">View Services</Link>
-                </Button>
-              </div>
-            </div>
+                  <X size={18} />
+                </button>
+              )}
+            </form>
 
-            {/* Right Content - Tech Showcase */}
-            <div className="relative">
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-                <Image
-                  src="/images/virtual-event.jpg"
-                  alt="Event Technology Platform"
-                  width={600}
-                  height={500}
-                  className="object-cover w-full h-96"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-600/20 to-transparent"></div>
-
-                {/* Tech Overlay */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-xl">
-                    <div className="flex items-center space-x-4">
-                      <div className="bg-blue-100 p-3 rounded-xl">
-                        <Monitor className="text-blue-600" size={24} />
-                      </div>
-                      <div>
-                        <div className="text-lg font-bold text-gray-900">Live Platform</div>
-                        <div className="text-sm text-gray-600">Real-time Analytics</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Floating Tech Cards */}
-              <div className="absolute -top-6 -left-6 bg-white rounded-2xl shadow-xl p-4 border border-gray-100 transform -rotate-6 hover:rotate-0 transition-transform duration-300">
-                <div className="flex items-center space-x-3">
-                  <div className="bg-green-100 p-2 rounded-xl">
-                    <BarChart3 className="text-green-600" size={20} />
-                  </div>
-                  <div>
-                    <div className="text-sm font-bold text-gray-900">Analytics</div>
-                    <div className="text-xs text-gray-600">Real-time</div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-xl p-4 border border-gray-100 transform rotate-6 hover:rotate-0 transition-transform duration-300">
-                <div className="flex items-center space-x-3">
-                  <div className="bg-purple-100 p-2 rounded-xl">
-                    <Smartphone className="text-purple-600" size={20} />
-                  </div>
-                  <div>
-                    <div className="text-sm font-bold text-gray-900">Mobile</div>
-                    <div className="text-xs text-gray-600">Native Apps</div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Background Tech Decoration */}
-              <div className="absolute -z-10 top-10 right-10 w-72 h-72 bg-gradient-to-br from-blue-200 to-purple-300 rounded-full opacity-20 blur-3xl"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Technology Capabilities Grid */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-600 text-sm font-medium mb-6">
-              <Lightbulb className="w-4 h-4 mr-2" />
-              Technology Stack
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Advanced <span className="text-red-600">Technology Capabilities</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Cutting-edge tools and platforms that power modern event experiences and deliver exceptional results.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {technologyCapabilities.map((capability, index) => (
-              <div
-                key={capability.title}
-                className="group bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 overflow-hidden"
-              >
-                <div className={`h-2 bg-gradient-to-r ${capability.color}`}></div>
-                <div className="p-8">
-                  <div className={`bg-gradient-to-r ${capability.bgColor} p-4 rounded-2xl w-fit mb-6`}>
-                    <capability.icon className="text-gray-700" size={32} />
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">{capability.title}</h3>
-                  <p className="text-gray-600 mb-6">{capability.description}</p>
-                  <div className="space-y-2">
-                    {capability.features.map((feature, featureIndex) => (
-                      <div key={featureIndex} className="flex items-center text-sm text-gray-600">
-                        <CheckCircle className="w-4 h-4 text-green-500 mr-3 flex-shrink-0" />
-                        {feature}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Platform Features */}
-      <section className="py-24 bg-gradient-to-br from-gray-50 to-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-green-100 text-green-600 text-sm font-medium mb-6">
-              <Settings className="w-4 h-4 mr-2" />
-              Platform Features
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Comprehensive <span className="text-red-600">Event Management</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              End-to-end platform capabilities covering every aspect of event planning, execution, and analysis.
-            </p>
-          </div>
-
-          {platformFeatures.map((category, categoryIndex) => (
-            <div key={category.category} className="mb-16">
-              <div className="text-center mb-12">
-                <div className="bg-white p-4 rounded-2xl shadow-lg border border-gray-100 w-fit mx-auto mb-4">
-                  <category.icon className="text-red-600" size={32} />
-                </div>
-                <h3 className="text-3xl font-bold text-gray-900">{category.category}</h3>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {category.capabilities.map((capability, capIndex) => (
-                  <div
-                    key={capability.title}
-                    className="group bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl hover:border-red-200 transition-all duration-300"
-                  >
-                    <div className="bg-red-50 p-3 rounded-2xl w-fit mb-4 group-hover:bg-red-100 transition-colors">
-                      <capability.icon className="text-red-600" size={24} />
-                    </div>
-                    <h4 className="text-lg font-bold text-gray-900 mb-2">{capability.title}</h4>
-                    <p className="text-gray-600 text-sm">{capability.description}</p>
-                  </div>
+            {/* Search Stats */}
+            {searchTerm && (
+              <div className="mt-4 flex flex-wrap items-center gap-2 text-sm text-gray-500">
+                <span className="font-medium">Found {searchResults.count} results</span>
+                {Object.entries(searchResults.categories).map(([category, count]) => (
+                  <Badge key={category} variant="outline" className="bg-gray-50">
+                    {faqCategories.find((c) => c.id === category)?.title}: {count}
+                  </Badge>
                 ))}
               </div>
-            </div>
-          ))}
-        </div>
-      </section>
+            )}
 
-      {/* Infrastructure Stats */}
-      <section className="py-24 bg-gradient-to-br from-gray-900 to-black text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 text-white text-sm font-medium mb-6">
-              <Cloud className="w-4 h-4 mr-2" />
-              Global Infrastructure
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Enterprise-Grade <span className="text-red-500">Infrastructure</span>
-            </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Robust, scalable infrastructure that ensures reliable performance for events of any size, anywhere in the
-              world.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
-            {infrastructureStats.map((stat, index) => (
-              <div key={stat.label} className="text-center group hover:scale-105 transition-transform duration-300">
-                <div className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20 mb-4 group-hover:bg-white/20 transition-colors">
-                  <stat.icon className="text-red-500 mx-auto mb-4" size={32} />
-                  <div className="text-3xl font-bold text-white mb-2">{stat.value}</div>
-                  <div className="text-sm text-gray-300">{stat.label}</div>
+            {/* Recent Searches */}
+            {recentSearches.length > 0 && (
+              <div className="mt-4">
+                <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
+                  <Clock size={14} />
+                  <span>Recent searches:</span>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {recentSearches.map((term) => (
+                    <div
+                      key={term}
+                      className="flex items-center gap-1 bg-gray-50 hover:bg-gray-100 rounded-full px-3 py-1 text-sm"
+                    >
+                      <button onClick={() => applyRecentSearch(term)} className="text-gray-700">
+                        {term}
+                      </button>
+                      <button onClick={() => removeRecentSearch(term)} className="text-gray-400 hover:text-gray-600">
+                        <X size={14} />
+                      </button>
+                    </div>
+                  ))}
                 </div>
               </div>
-            ))}
+            )}
           </div>
+        </motion.section>
 
-          {/* Infrastructure Features */}
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
-              <div className="bg-blue-600 p-3 rounded-2xl w-fit mb-4">
-                <Globe className="text-white" size={24} />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Global CDN</h3>
-              <p className="text-gray-300 text-sm">
-                Worldwide content delivery network ensuring fast, reliable access from any location with 150+ edge
-                nodes.
-              </p>
+        {/* FAQ Categories Tabs */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mb-12"
+        >
+          <Tabs defaultValue="all" onValueChange={setActiveCategory} className="w-full">
+            <div className="bg-white rounded-xl p-2 shadow-md border border-gray-100 mb-8">
+              <TabsList className="grid grid-cols-2 md:grid-cols-6 gap-1 w-full">
+                <TabsTrigger value="all" className="data-[state=active]:bg-red-50 data-[state=active]:text-red-600">
+                  All Topics
+                </TabsTrigger>
+                {faqCategories.map((category) => (
+                  <TabsTrigger
+                    key={category.id}
+                    value={category.id}
+                    className="data-[state=active]:bg-red-50 data-[state=active]:text-red-600 flex items-center gap-2"
+                  >
+                    {category.icon}
+                    <span className="hidden md:inline">{category.title}</span>
+                  </TabsTrigger>
+                ))}
+              </TabsList>
             </div>
 
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
-              <div className="bg-green-600 p-3 rounded-2xl w-fit mb-4">
-                <Shield className="text-white" size={24} />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Security First</h3>
-              <p className="text-gray-300 text-sm">
-                Enterprise-grade security with SOC 2 compliance, end-to-end encryption, and comprehensive audit trails.
-              </p>
-            </div>
+            {/* FAQ Content */}
+            <TabsContent value="all" className="mt-0">
+              {filteredFAQs.length === 0 ? (
+                <div className="text-center py-16 bg-white rounded-2xl shadow-md border border-gray-100">
+                  <HelpCircle className="text-gray-300 mx-auto mb-4" size={64} />
+                  <h3 className="text-xl font-semibold text-gray-700 mb-2">No FAQs Found</h3>
+                  <p className="text-gray-500 max-w-md mx-auto">
+                    We couldn't find any FAQs matching your search. Try different keywords or contact our support team.
+                  </p>
+                  <Button variant="outline" className="mt-6" onClick={clearSearch}>
+                    Clear Search
+                  </Button>
+                </div>
+              ) : (
+                filteredFAQs.map((category, categoryIndex) => (
+                  <div key={category.id} className="mb-12">
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="p-2 rounded-lg bg-gray-50">{category.icon}</div>
+                      <h2 className="text-2xl font-bold text-gray-800">{category.title}</h2>
+                      <Badge variant="outline" className="ml-auto">
+                        {category.faqs.length} items
+                      </Badge>
+                    </div>
 
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
-              <div className="bg-purple-600 p-3 rounded-2xl w-fit mb-4">
-                <TrendingUp className="text-white" size={24} />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">Auto-Scaling</h3>
-              <p className="text-gray-300 text-sm">
-                Intelligent auto-scaling infrastructure that adapts to demand, ensuring optimal performance during peak
-                usage.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+                    <div className="space-y-4">
+                      {category.faqs.map((faq, faqIndex) => {
+                        const globalIndex = categoryIndex * 100 + faqIndex
+                        const isOpen = openItems.includes(globalIndex)
+                        const isPopular = popularQuestionIds.includes(globalIndex)
 
-      {/* Innovation Areas */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-purple-100 text-purple-600 text-sm font-medium mb-6">
-              <Target className="w-4 h-4 mr-2" />
-              Future Innovation
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Next-Generation <span className="text-red-600">Event Technology</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Pioneering the future of events with cutting-edge technologies like AI, blockchain, IoT, and immersive
-              experiences.
-            </p>
-          </div>
+                        return (
+                          <motion.div
+                            key={faqIndex}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.3, delay: faqIndex * 0.05 }}
+                            className={`bg-white rounded-xl shadow-sm border ${isOpen ? "border-red-200" : "border-gray-100"
+                              } hover:border-red-200 transition-all duration-300 ${isPopular ? "ring-2 ring-red-100" : ""
+                              }`}
+                          >
+                            <button
+                              onClick={() => toggleItem(globalIndex)}
+                              className="w-full px-6 py-5 text-left flex items-center justify-between focus:outline-none"
+                            >
+                              <div className="flex items-center gap-3 pr-4">
+                                {isPopular && (
+                                  <Badge className="bg-red-50 text-red-600 border-red-100">
+                                    <TrendingUp size={12} className="mr-1" /> Popular
+                                  </Badge>
+                                )}
+                                <h3 className="text-lg font-semibold text-gray-800">{faq.question}</h3>
+                              </div>
+                              <ChevronDown
+                                className={`text-red-600 flex-shrink-0 transition-transform duration-200 ${isOpen ? "transform rotate-180" : ""
+                                  }`}
+                                size={20}
+                              />
+                            </button>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {innovationAreas.map((area, index) => (
-              <div
-                key={area.title}
-                className="group bg-gradient-to-br from-gray-50 to-white p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100"
-              >
-                <div className="flex items-start space-x-6">
-                  <div className="bg-gradient-to-r from-red-100 to-red-50 p-4 rounded-2xl group-hover:from-red-200 group-hover:to-red-100 transition-colors">
-                    <area.icon className="text-red-600" size={32} />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-3">{area.title}</h3>
-                    <p className="text-gray-600 mb-6">{area.description}</p>
-                    <div className="grid grid-cols-2 gap-3">
-                      {area.features.map((feature, featureIndex) => (
-                        <div key={featureIndex} className="flex items-center text-sm text-gray-600">
-                          <CheckCircle className="w-4 h-4 text-red-500 mr-2 flex-shrink-0" />
-                          {feature}
-                        </div>
-                      ))}
+                            <AnimatePresence>
+                              {isOpen && (
+                                <motion.div
+                                  initial={{ height: 0, opacity: 0 }}
+                                  animate={{ height: "auto", opacity: 1 }}
+                                  exit={{ height: 0, opacity: 0 }}
+                                  transition={{ duration: 0.3 }}
+                                  className="overflow-hidden"
+                                >
+                                  <div className="px-6 pb-5">
+                                    <div className="border-t border-gray-100 pt-4">
+                                      <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
+                                      <div className="mt-4 flex flex-wrap gap-2">
+                                        {faq.tags.map((tag) => (
+                                          <Badge key={tag} variant="outline" className="bg-gray-50 text-gray-600">
+                                            #{tag}
+                                          </Badge>
+                                        ))}
+                                      </div>
+                                      <div className="mt-4 flex justify-end">
+                                        <Button
+                                          variant="ghost"
+                                          size="sm"
+                                          className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                                        >
+                                          Was this helpful?
+                                        </Button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </motion.div>
+                              )}
+                            </AnimatePresence>
+                          </motion.div>
+                        )
+                      })}
                     </div>
                   </div>
-                </div>
-              </div>
+                ))
+              )}
+            </TabsContent>
+
+            {faqCategories.map((category) => (
+              <TabsContent key={category.id} value={category.id} className="mt-0">
+                {filteredFAQs.filter((c) => c.id === category.id).length === 0 ? (
+                  <div className="text-center py-16 bg-white rounded-2xl shadow-md border border-gray-100">
+                    <HelpCircle className="text-gray-300 mx-auto mb-4" size={64} />
+                    <h3 className="text-xl font-semibold text-gray-700 mb-2">No FAQs Found</h3>
+                    <p className="text-gray-500 max-w-md mx-auto">
+                      We couldn't find any FAQs matching your search in this category. Try different keywords or check
+                      other categories.
+                    </p>
+                    <Button variant="outline" className="mt-6" onClick={clearSearch}>
+                      Clear Search
+                    </Button>
+                  </div>
+                ) : (
+                  filteredFAQs
+                    .filter((c) => c.id === category.id)
+                    .map((filteredCategory) => (
+                      <div key={filteredCategory.id} className="space-y-4">
+                        {filteredCategory.faqs.map((faq, faqIndex) => {
+                          const globalIndex = faqCategories.findIndex((c) => c.id === category.id) * 100 + faqIndex
+                          const isOpen = openItems.includes(globalIndex)
+                          const isPopular = popularQuestionIds.includes(globalIndex)
+
+                          return (
+                            <motion.div
+                              key={faqIndex}
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ duration: 0.3, delay: faqIndex * 0.05 }}
+                              className={`bg-white rounded-xl shadow-sm border ${isOpen ? "border-red-200" : "border-gray-100"
+                                } hover:border-red-200 transition-all duration-300 ${isPopular ? "ring-2 ring-red-100" : ""
+                                }`}
+                            >
+                              <button
+                                onClick={() => toggleItem(globalIndex)}
+                                className="w-full px-6 py-5 text-left flex items-center justify-between focus:outline-none"
+                              >
+                                <div className="flex items-center gap-3 pr-4">
+                                  {isPopular && (
+                                    <Badge className="bg-red-50 text-red-600 border-red-100">
+                                      <TrendingUp size={12} className="mr-1" /> Popular
+                                    </Badge>
+                                  )}
+                                  <h3 className="text-lg font-semibold text-gray-800">{faq.question}</h3>
+                                </div>
+                                <ChevronDown
+                                  className={`text-red-600 flex-shrink-0 transition-transform duration-200 ${isOpen ? "transform rotate-180" : ""
+                                    }`}
+                                  size={20}
+                                />
+                              </button>
+
+                              <AnimatePresence>
+                                {isOpen && (
+                                  <motion.div
+                                    initial={{ height: 0, opacity: 0 }}
+                                    animate={{ height: "auto", opacity: 1 }}
+                                    exit={{ height: 0, opacity: 0 }}
+                                    transition={{ duration: 0.3 }}
+                                    className="overflow-hidden"
+                                  >
+                                    <div className="px-6 pb-5">
+                                      <div className="border-t border-gray-100 pt-4">
+                                        <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
+                                        <div className="mt-4 flex flex-wrap gap-2">
+                                          {faq.tags.map((tag) => (
+                                            <Badge key={tag} variant="outline" className="bg-gray-50 text-gray-600">
+                                              #{tag}
+                                            </Badge>
+                                          ))}
+                                        </div>
+                                        <div className="mt-4 flex justify-end">
+                                          <Button
+                                            variant="ghost"
+                                            size="sm"
+                                            className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                                          >
+                                            Was this helpful?
+                                          </Button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </motion.div>
+                                )}
+                              </AnimatePresence>
+                            </motion.div>
+                          )
+                        })}
+                      </div>
+                    ))
+                )}
+              </TabsContent>
             ))}
-          </div>
-        </div>
-      </section>
+          </Tabs>
+        </motion.section>
 
-      {/* Global Capabilities */}
-      <section className="py-24 bg-gradient-to-br from-gray-50 to-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-red-100 text-red-600 text-sm font-medium mb-6">
-              <Globe className="w-4 h-4 mr-2" />
-              Global Reach
+        {/* FAQ Stats */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="mb-16"
+        >
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 text-center">
+              <div className="text-3xl font-bold text-red-600 mb-2">200+</div>
+              <div className="text-gray-600">Total FAQs</div>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Worldwide <span className="text-red-600">Event Capabilities</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              International expertise and local knowledge to deliver successful events worldwide with multi-language
-              support and cultural adaptation.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div className="space-y-8">
-              <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                  <Globe className="text-red-600 mr-3" size={24} />
-                  Multi-Language Support
-                </h3>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                    <span className="text-gray-600">Real-time translation</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                    <span className="text-gray-600">Multilingual platforms</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                    <span className="text-gray-600">Cultural adaptation</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                    <span className="text-gray-600">Local compliance</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                  <Clock className="text-red-600 mr-3" size={24} />
-                  Time Zone Management
-                </h3>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                    <span className="text-gray-600">Global scheduling</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                    <span className="text-gray-600">Multi-timezone events</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                    <span className="text-gray-600">Regional customization</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                    <span className="text-gray-600">24/7 global support</span>
-                  </div>
-                </div>
-              </div>
+            <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 text-center">
+              <div className="text-3xl font-bold text-red-600 mb-2">98%</div>
+              <div className="text-gray-600">Questions Resolved</div>
             </div>
+            <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 text-center">
+              <div className="text-3xl font-bold text-red-600 mb-2">5</div>
+              <div className="text-gray-600">Categories</div>
+            </div>
+            <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100 text-center">
+              <div className="text-3xl font-bold text-red-600 mb-2">24/7</div>
+              <div className="text-gray-600">Support Available</div>
+            </div>
+          </div>
+        </motion.section>
 
-            <div className="relative">
-              <Image
-                src="/images/trade-show.jpg"
-                alt="Global Event Capabilities"
-                width={600}
-                height={500}
-                className="rounded-3xl shadow-2xl object-cover w-full h-full"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-3xl"></div>
-
-              {/* Floating Global Stats */}
-              <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-6 border border-gray-100">
-                <div className="flex items-center space-x-4">
-                  <div className="bg-blue-100 p-3 rounded-xl">
-                    <Globe className="text-blue-600" size={24} />
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold text-gray-900">50+</div>
-                    <div className="text-sm text-gray-600">Countries Served</div>
-                  </div>
+        {/* Contact Support */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="mt-20"
+        >
+          <div className="bg-gradient-to-r from-red-600 to-red-500 text-white rounded-2xl p-8 md:p-12 text-center relative overflow-hidden">
+            <div className="absolute inset-0 bg-pattern opacity-10"></div>
+            <div className="relative z-10">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">Still Have Questions?</h2>
+              <p className="text-xl mb-8 max-w-2xl mx-auto">
+                Our support team is here to help. Get personalized assistance with your specific questions or concerns.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button className="bg-white text-red-600 hover:bg-gray-100 px-8 py-6 rounded-xl font-semibold text-lg transition-colors h-auto">
+                  Contact Support Team
+                </Button>
+                <Button
+                  className="bg-white text-red-600 hover:bg-gray-100 px-8 py-6 rounded-xl font-semibold text-lg transition-colors h-auto">
+                  Schedule a Call
+                </Button>
+              </div>
+              <div className="mt-8 flex items-center justify-center gap-6">
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="text-white" size={16} />
+                  <span className="text-sm">1hr Response Time</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="text-white" size={16} />
+                  <span className="text-sm">24/7 Support</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="text-white" size={16} />
+                  <span className="text-sm">Multilingual Team</span>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-r from-red-600 to-red-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Experience Our Technology</h2>
-            <p className="text-xl text-red-100 mb-12">
-              Discover how our advanced capabilities and cutting-edge technology can transform your next event into an
-              exceptional experience that delivers measurable results.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Button
-                asChild
-                size="lg"
-                className="bg-white text-red-600 hover:bg-gray-100 rounded-full px-8 py-6 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
-              >
-                <Link href="/contact">Schedule a Demo</Link>
-              </Button>
-              <Button
-                asChild
-                size="lg"
-                className="bg-white text-red-600 hover:bg-gray-100 rounded-full px-8 py-6 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
-              >
-                <Link href="/services">View Our Services</Link>
-              </Button>
-            </div>
-
-            {/* Tech Trust Indicators */}
-            <div className="mt-16 flex flex-wrap justify-center items-center gap-8 opacity-80">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-white">SOC 2</div>
-                <div className="text-red-200 text-sm">Certified</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-white">99.9%</div>
-                <div className="text-red-200 text-sm">Uptime</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-white">150+</div>
-                <div className="text-red-200 text-sm">CDN Nodes</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-white">100K+</div>
-                <div className="text-red-200 text-sm">Concurrent Users</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+        </motion.section>
+      </div>
     </div>
   )
 }

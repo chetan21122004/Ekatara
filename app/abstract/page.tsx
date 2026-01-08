@@ -139,23 +139,25 @@ export default function AbstractGuidelinesPage() {
             {/* Enhanced buttons with animations */}
             <div className="flex flex-wrap justify-center gap-6 animate-fade-in-up animation-delay-450">
               <Button
+                asChild
                 size="lg"
                 className="group relative bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white rounded-xl px-10 py-7 text-lg font-semibold shadow-[0_0_30px_rgba(220,38,38,0.2)] hover:shadow-[0_0_50px_rgba(220,38,38,0.4)] transition-all duration-300 transform hover:-translate-y-1"
               >
-                <span className="relative z-10 flex items-center">
+                <a href="https://register.ekatrameetings.com" target="_blank" rel="noopener noreferrer" className="relative z-10 flex items-center">
                   Submit Abstract
                   <ExternalLink className="ml-2 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-                </span>
+                </a>
               </Button>
               <Button
+                asChild
                 size="lg"
                 variant="outline"
                 className="group relative bg-white/5 backdrop-blur-sm border-white/10 text-white hover:bg-white/10 rounded-xl px-10 py-7 text-lg font-semibold transition-all duration-300"
               >
-                <span className="relative z-10 flex items-center">
-                  Download Template
+                <a href="mailto:abstracts@ekatrameetings.com?subject=Abstract Template Request" className="relative z-10 flex items-center">
+                  Request Template
                   <Download className="ml-2 w-5 h-5 transition-transform duration-300 group-hover:translate-y-1" />
-                </span>
+                </a>
               </Button>
             </div>
           </div>

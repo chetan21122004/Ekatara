@@ -424,15 +424,7 @@ export default function ContactPage() {
                         className="mt-1 h-4 w-4 text-red-600 border-gray-300 rounded focus:ring-red-500"
                       />
                       <label htmlFor="terms" className="text-sm text-gray-600">
-                        I agree to the{" "}
-                        <a href="#" className="text-red-600 hover:underline font-medium">
-                          Privacy Policy
-                        </a>{" "}
-                        and{" "}
-                        <a href="#" className="text-red-600 hover:underline font-medium">
-                          Terms of Service
-                        </a>
-                        . I understand that my information will be used to respond to my inquiry.
+                        I agree to the Privacy Policy and Terms of Service. I understand that my information will be used to respond to my inquiry.
                       </label>
                     </div>
 
@@ -909,19 +901,25 @@ export default function ContactPage() {
 
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
                 <Button
+                  asChild
                   size="lg"
                   className="bg-white text-red-600 hover:bg-red-50 rounded-full px-10 py-4 text-lg font-semibold"
                 >
-                  <Calendar className="mr-2" size={20} />
-                  Schedule Consultation
+                  <a href="mailto:info@ekatrameetings.com?subject=Consultation Request">
+                    <Calendar className="mr-2" size={20} />
+                    Schedule Consultation
+                  </a>
                 </Button>
                 <Button
+                  asChild
                   size="lg"
                   variant="outline"
                   className="border-2 border-white text-white hover:bg-white/10 rounded-full px-10 py-4 text-lg font-semibold backdrop-blur-sm"
                 >
-                  <MessageCircle className="mr-2" size={20} />
-                  Start Live Chat
+                  <a href="mailto:support@ekatrameetings.com?subject=Support Request">
+                    <MessageCircle className="mr-2" size={20} />
+                    Contact Support
+                  </a>
                 </Button>
               </div>
 
