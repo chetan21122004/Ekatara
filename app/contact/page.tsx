@@ -575,44 +575,7 @@ export default function ContactPage() {
                 </CardContent>
               </Card>
 
-              {/* Contact Information */}
-              <Card className="border-none shadow-lg">
-                <CardHeader className="pb-4">
-                  <CardTitle className="flex items-center text-xl">
-                    <Building className="mr-2 text-red-600" size={20} />
-                    Direct Contact
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                    <div className="bg-red-100 p-2 rounded-full">
-                      <Phone className="text-red-600" size={16} />
-                    </div>
-                    <div>
-                      <p className="font-medium text-sm">Main Line</p>
-                      <p className="text-gray-600 text-sm">+1 800 EKATRA</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                    <div className="bg-red-100 p-2 rounded-full">
-                      <Mail className="text-red-600" size={16} />
-                    </div>
-                    <div>
-                      <p className="font-medium text-sm">General Email</p>
-                      <p className="text-gray-600 text-sm">info@ekatrameetings.com</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                    <div className="bg-red-100 p-2 rounded-full">
-                      <Headphones className="text-red-600" size={16} />
-                    </div>
-                    <div>
-                      <p className="font-medium text-sm">Support</p>
-                      <p className="text-gray-600 text-sm">support@ekatrameetings.com</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+            
 
               {/* Security & Privacy */}
               <Card className="border-none shadow-lg">
@@ -693,7 +656,7 @@ export default function ContactPage() {
                   </div>
                   <div className="flex items-center space-x-2">
                     <Phone className="text-red-600" size={14} />
-                    <span className="text-gray-700">+91 20 4567 8900</span>
+                    <span className="text-gray-700">+91-9370172365</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <Clock className="text-red-600" size={14} />
@@ -743,7 +706,7 @@ export default function ContactPage() {
                   </div>
                   <div className="flex items-center space-x-2">
                     <Phone className="text-red-600" size={14} />
-                    <span className="text-gray-700">+971 4 567 8900</span>
+                    <span className="text-gray-700">+91 9823383177</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <Clock className="text-red-600" size={14} />
@@ -793,7 +756,7 @@ export default function ContactPage() {
                   </div>
                   <div className="flex items-center space-x-2">
                     <Phone className="text-red-600" size={14} />
-                    <span className="text-gray-700">+31 10 567 8900</span>
+                    <span className="text-gray-700">+91 9823383177</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <Clock className="text-red-600" size={14} />
@@ -973,78 +936,7 @@ export default function ContactPage() {
           </div>
         </section>
 
-        {/* Final CTA */}
-        <section className="py-20">
-          <div className="relative overflow-hidden rounded-3xl">
-            <div className="absolute inset-0 bg-gradient-to-r from-red-600 via-red-700 to-red-800"></div>
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.1)_0%,transparent_50%)]"></div>
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(255,255,255,0.1)_0%,transparent_50%)]"></div>
-
-            <div className="relative p-12 md:p-20 text-center">
-              <div className="inline-flex items-center justify-center p-2 bg-white/20 rounded-full backdrop-blur-sm mb-6">
-                <Badge className="bg-white text-red-600 hover:bg-red-50">
-                  <TrendingUp className="mr-1 h-3 w-3" />
-                  Ready to Get Started?
-                </Badge>
-              </div>
-
-              <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
-                Let's Create Something{" "}
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-red-100 to-white">
-                  Amazing
-                </span>
-              </h2>
-
-              <p className="text-xl md:text-2xl text-red-100 mb-12 max-w-4xl mx-auto leading-relaxed">
-                Whether you're planning a small meeting or a large-scale conference, our team is ready to make it
-                extraordinary. Get in touch today and let's start planning your success story.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <Button
-                  asChild
-                  size="lg"
-                  className="bg-white text-red-600 hover:bg-red-50 rounded-full px-10 py-4 text-lg font-semibold"
-                >
-                  <a href="mailto:info@ekatrameetings.com?subject=Consultation Request">
-                    <Calendar className="mr-2" size={20} />
-                    Schedule Consultation
-                  </a>
-                </Button>
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="border-2 border-white text-white hover:bg-white/10 rounded-full px-10 py-4 text-lg font-semibold backdrop-blur-sm"
-                >
-                  <a href="mailto:support@ekatrameetings.com?subject=Support Request">
-                    <MessageCircle className="mr-2" size={20} />
-                    Contact Support
-                  </a>
-                </Button>
-              </div>
-
-              <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-white mb-2">50k+</div>
-                  <div className="text-red-100 text-sm">Happy Clients</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-white mb-2">99.9%</div>
-                  <div className="text-red-100 text-sm">Satisfaction</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-white mb-2">24/7</div>
-                  <div className="text-red-100 text-sm">Support</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-white mb-2">500+</div>
-                  <div className="text-red-100 text-sm">Events</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+      
       </div>
     </div>
   )
