@@ -41,7 +41,6 @@ import {
 export default function RegistrationPage() {
   const [selectedPlan, setSelectedPlan] = useState("Professional")
   const [activeTab, setActiveTab] = useState("early-bird")
-  const [activeSection, setActiveSection] = useState("overview")
 
   const registrationSteps = [
     {

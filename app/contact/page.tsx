@@ -1,3 +1,5 @@
+"use client"
+
 import {
   MapPin,
   Phone,
@@ -26,8 +28,58 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { useState } from "react"
 
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    company: "",
+    subject: "",
+    priority: "medium",
+    message: "",
+    terms: false,
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    
+    // Create mailto link with form data
+    const subject = encodeURIComponent(
+      `[${formData.subject || "General Inquiry"}] Contact Form Submission`
+    )
+    const body = encodeURIComponent(
+      `Name: ${formData.firstName} ${formData.lastName}\n` +
+      `Email: ${formData.email}\n` +
+      `Phone: ${formData.phone || "Not provided"}\n` +
+      `Company: ${formData.company || "Not provided"}\n` +
+      `Priority: ${formData.priority}\n` +
+      `Subject: ${formData.subject}\n\n` +
+      `Message:\n${formData.message}`
+    )
+    
+    // Open email client
+    window.location.href = `mailto:info@ekatrameetings.com?subject=${subject}&body=${body}`
+    
+    setIsSubmitting(false)
+  }
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    const { name, value, type } = e.target
+    const checked = (e.target as HTMLInputElement).checked
+    
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }))
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-red-50">
       {/* Hero Section */}
@@ -290,7 +342,7 @@ export default function ContactPage() {
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <form className="space-y-6">
+                  <form className="space-y-6" onSubmit={handleSubmit}>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
                         <label htmlFor="firstName" className="text-sm font-medium text-gray-700">
@@ -298,7 +350,11 @@ export default function ContactPage() {
                         </label>
                         <Input
                           id="firstName"
+                          name="firstName"
+                          value={formData.firstName}
+                          onChange={handleChange}
                           placeholder="John"
+                          required
                           className="rounded-xl border-gray-300 focus:border-red-500 focus:ring-red-500"
                         />
                       </div>
@@ -308,7 +364,11 @@ export default function ContactPage() {
                         </label>
                         <Input
                           id="lastName"
+                          name="lastName"
+                          value={formData.lastName}
+                          onChange={handleChange}
                           placeholder="Doe"
+                          required
                           className="rounded-xl border-gray-300 focus:border-red-500 focus:ring-red-500"
                         />
                       </div>
@@ -320,8 +380,12 @@ export default function ContactPage() {
                       </label>
                       <Input
                         id="email"
+                        name="email"
                         type="email"
+                        value={formData.email}
+                        onChange={handleChange}
                         placeholder="john.doe@company.com"
+                        required
                         className="rounded-xl border-gray-300 focus:border-red-500 focus:ring-red-500"
                       />
                     </div>
@@ -333,7 +397,10 @@ export default function ContactPage() {
                         </label>
                         <Input
                           id="phone"
+                          name="phone"
                           type="tel"
+                          value={formData.phone}
+                          onChange={handleChange}
                           placeholder="+1 (555) 123-4567"
                           className="rounded-xl border-gray-300 focus:border-red-500 focus:ring-red-500"
                         />
@@ -344,6 +411,9 @@ export default function ContactPage() {
                         </label>
                         <Input
                           id="company"
+                          name="company"
+                          value={formData.company}
+                          onChange={handleChange}
                           placeholder="Acme Corporation"
                           className="rounded-xl border-gray-300 focus:border-red-500 focus:ring-red-500"
                         />
@@ -356,6 +426,10 @@ export default function ContactPage() {
                       </label>
                       <select
                         id="subject"
+                        name="subject"
+                        value={formData.subject}
+                        onChange={handleChange}
+                        required
                         className="w-full rounded-xl border-gray-300 focus:border-red-500 focus:ring-red-500 p-3"
                       >
                         <option value="">Select a subject</option>
@@ -376,7 +450,14 @@ export default function ContactPage() {
                       </label>
                       <div className="grid grid-cols-3 gap-3">
                         <label className="flex items-center p-3 border border-gray-300 rounded-xl cursor-pointer hover:bg-gray-50">
-                          <input type="radio" name="priority" value="low" className="mr-3 text-red-600" />
+                          <input
+                            type="radio"
+                            name="priority"
+                            value="low"
+                            checked={formData.priority === "low"}
+                            onChange={handleChange}
+                            className="mr-3 text-red-600"
+                          />
                           <div>
                             <div className="font-medium text-sm">Low</div>
                             <div className="text-xs text-gray-500">24-48 hours</div>
@@ -387,8 +468,9 @@ export default function ContactPage() {
                             type="radio"
                             name="priority"
                             value="medium"
+                            checked={formData.priority === "medium"}
+                            onChange={handleChange}
                             className="mr-3 text-red-600"
-                            defaultChecked
                           />
                           <div>
                             <div className="font-medium text-sm">Medium</div>
@@ -396,7 +478,14 @@ export default function ContactPage() {
                           </div>
                         </label>
                         <label className="flex items-center p-3 border border-gray-300 rounded-xl cursor-pointer hover:bg-gray-50">
-                          <input type="radio" name="priority" value="high" className="mr-3 text-red-600" />
+                          <input
+                            type="radio"
+                            name="priority"
+                            value="high"
+                            checked={formData.priority === "high"}
+                            onChange={handleChange}
+                            className="mr-3 text-red-600"
+                          />
                           <div>
                             <div className="font-medium text-sm">High</div>
                             <div className="text-xs text-gray-500">1-2 hours</div>
@@ -411,8 +500,12 @@ export default function ContactPage() {
                       </label>
                       <Textarea
                         id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
                         rows={6}
                         placeholder="Please provide details about your inquiry, including any specific requirements or deadlines..."
+                        required
                         className="rounded-xl border-gray-300 focus:border-red-500 focus:ring-red-500"
                       />
                     </div>
@@ -420,7 +513,11 @@ export default function ContactPage() {
                     <div className="flex items-start space-x-3">
                       <input
                         id="terms"
+                        name="terms"
                         type="checkbox"
+                        checked={formData.terms}
+                        onChange={handleChange}
+                        required
                         className="mt-1 h-4 w-4 text-red-600 border-gray-300 rounded focus:ring-red-500"
                       />
                       <label htmlFor="terms" className="text-sm text-gray-600">
@@ -428,9 +525,13 @@ export default function ContactPage() {
                       </label>
                     </div>
 
-                    <Button className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white rounded-xl py-3 text-lg font-medium">
+                    <Button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white rounded-xl py-3 text-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
                       <Send className="mr-2" size={20} />
-                      Send Message
+                      {isSubmitting ? "Sending..." : "Send Message"}
                     </Button>
                   </form>
                 </CardContent>
