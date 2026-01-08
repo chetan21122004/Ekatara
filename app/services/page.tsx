@@ -289,13 +289,7 @@ export default function CapabilitiesPage() {
                     <ArrowRight className="ml-2" size={16} />
                   </Link>
                 </Button>
-                <Button  
-                  asChild
-                  variant="outline"
-                  className="border-red-200 text-red-600 hover:bg-red-50 rounded-full px-8 py-3"
-                >
-                  <Link href="/services">View Services</Link>
-                </Button>
+            
               </div>
             </div>
 
