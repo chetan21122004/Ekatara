@@ -48,7 +48,8 @@ export default function ContactPage() {
     e.preventDefault()
     setIsSubmitting(true)
     
-    // Create mailto link with form data
+    // Create Gmail compose URL with form data
+    const to = encodeURIComponent("sourabh@ekatra.co.in")
     const subject = encodeURIComponent(
       `[${formData.subject || "General Inquiry"}] Contact Form Submission`
     )
@@ -62,10 +63,16 @@ export default function ContactPage() {
       `Message:\n${formData.message}`
     )
     
-    // Open email client
-    window.location.href = `mailto:info@ekatrameetings.com?subject=${subject}&body=${body}`
+    // Redirect to Gmail compose window
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${to}&su=${subject}&body=${body}`
+    window.open(gmailUrl, '_blank')
     
     setIsSubmitting(false)
+    
+    // Show success message
+    setTimeout(() => {
+      alert("Opening Gmail compose window. Please complete sending the email from your Gmail account.")
+    }, 100)
   }
 
   const handleChange = (
@@ -188,11 +195,7 @@ export default function ContactPage() {
                   <ArrowRight className="text-gray-400" size={16} />
                 </div>
               </CardContent>
-              <CardFooter>
-                <Button className="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white rounded-xl">
-                  Start Instant Support
-                </Button>
-              </CardFooter>
+           
             </Card>
 
             {/* Professional Services */}
@@ -244,11 +247,7 @@ export default function ContactPage() {
                   <ArrowRight className="text-gray-400" size={16} />
                 </div>
               </CardContent>
-              <CardFooter>
-                <Button variant="outline" className="w-full border-blue-600 text-blue-600 hover:bg-blue-50 rounded-xl">
-                  Request Consultation
-                </Button>
-              </CardFooter>
+             
             </Card>
 
             {/* Self-Service Hub */}
@@ -300,14 +299,7 @@ export default function ContactPage() {
                   <ArrowRight className="text-gray-400" size={16} />
                 </div>
               </CardContent>
-              <CardFooter>
-                <Button
-                  variant="outline"
-                  className="w-full border-green-600 text-green-600 hover:bg-green-50 rounded-xl"
-                >
-                  Explore Resources
-                </Button>
-              </CardFooter>
+            
             </Card>
           </div>
         </section>
