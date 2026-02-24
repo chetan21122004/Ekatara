@@ -47,7 +47,7 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
-    
+
     // Create Gmail compose URL with form data
     const to = encodeURIComponent("sourabh@ekatra.co.in")
     const subject = encodeURIComponent(
@@ -62,13 +62,13 @@ export default function ContactPage() {
       `Subject: ${formData.subject}\n\n` +
       `Message:\n${formData.message}`
     )
-    
+
     // Redirect to Gmail compose window
     const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${to}&su=${subject}&body=${body}`
     window.open(gmailUrl, '_blank')
-    
+
     setIsSubmitting(false)
-    
+
     // Show success message
     setTimeout(() => {
       alert("Opening Gmail compose window. Please complete sending the email from your Gmail account.")
@@ -80,7 +80,7 @@ export default function ContactPage() {
   ) => {
     const { name, value, type } = e.target
     const checked = (e.target as HTMLInputElement).checked
-    
+
     setFormData((prev) => ({
       ...prev,
       [name]: type === "checkbox" ? checked : value,
@@ -195,7 +195,7 @@ export default function ContactPage() {
                   <ArrowRight className="text-gray-400" size={16} />
                 </div>
               </CardContent>
-           
+
             </Card>
 
             {/* Professional Services */}
@@ -247,7 +247,7 @@ export default function ContactPage() {
                   <ArrowRight className="text-gray-400" size={16} />
                 </div>
               </CardContent>
-             
+
             </Card>
 
             {/* Self-Service Hub */}
@@ -299,13 +299,13 @@ export default function ContactPage() {
                   <ArrowRight className="text-gray-400" size={16} />
                 </div>
               </CardContent>
-            
+
             </Card>
           </div>
         </section>
 
         {/* Contact Form Section */}
-        <section className="py-20">
+        <section className="py-8">
           <div className="text-center mb-16">
             <Badge className="mb-4 bg-red-100 text-red-800 hover:bg-red-200">Get in Touch</Badge>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -567,7 +567,7 @@ export default function ContactPage() {
                 </CardContent>
               </Card>
 
-            
+
 
               {/* Security & Privacy */}
               <Card className="border-none shadow-lg">
@@ -644,7 +644,7 @@ export default function ContactPage() {
                 <div className="space-y-3 text-sm">
                   <div className="flex items-center space-x-2">
                     <MapPin className="text-red-600" size={14} />
-                    <span className="text-gray-700">Tech Park, Hinjewadi Phase 2</span>
+                    <span className="text-gray-700">Pancard Club Road Baner</span>
                   </div>
                   <div className="flex items-center space-x-2">
                     <Phone className="text-red-600" size={14} />
@@ -656,12 +656,6 @@ export default function ContactPage() {
                   </div>
                 </div>
               </CardContent>
-              <CardFooter className="p-6 pt-0">
-                <Button variant="outline" className="w-full border-red-600 text-red-600 hover:bg-red-50">
-                  <MapPin className="mr-2" size={16} />
-                  Get Directions
-                </Button>
-              </CardFooter>
             </Card>
 
             {/* Dubai Office */}
@@ -706,12 +700,6 @@ export default function ContactPage() {
                   </div>
                 </div>
               </CardContent>
-              <CardFooter className="p-6 pt-0">
-                <Button variant="outline" className="w-full border-amber-600 text-amber-600 hover:bg-amber-50">
-                  <MapPin className="mr-2" size={16} />
-                  Get Directions
-                </Button>
-              </CardFooter>
             </Card>
 
             {/* Rotterdam Office */}
@@ -756,12 +744,6 @@ export default function ContactPage() {
                   </div>
                 </div>
               </CardContent>
-              <CardFooter className="p-6 pt-0">
-                <Button variant="outline" className="w-full border-blue-600 text-blue-600 hover:bg-blue-50">
-                  <MapPin className="mr-2" size={16} />
-                  Get Directions
-                </Button>
-              </CardFooter>
             </Card>
           </div>
 
@@ -928,7 +910,7 @@ export default function ContactPage() {
           </div>
         </section>
 
-      
+
       </div>
     </div>
   )
