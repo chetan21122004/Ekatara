@@ -634,7 +634,7 @@ export default function ContactPage() {
               </div>
               <CardContent className="p-6">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-2xl font-bold text-gray-900">Pune, India</h3>
+                  <h3 className="text-2xl font-bold text-gray-900"> Ekatra Support Services, Pune </h3>
                   <div className="flex items-center space-x-1">
                     <div className="h-2 w-2 bg-green-500 rounded-full"></div>
                     <span className="text-xs text-green-600 font-medium">Open</span>
